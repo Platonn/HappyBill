@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('happyBill', ['ngResource', 'ui.router', 'ui.bootstrap']);
+    .module('happyBill', ['ngResource', 'ui.router', 'ui.bootstrap', 'ngCookies']);
 
 })();

@@ -14,7 +14,7 @@
     "jquery": "~2.1.4",
     "rdash-ui": "1.0.*",
     "font-awesome": "~4.1.0",
-    "angular-cookies": "~1.2.21"
+    "angular-cookies": "~1.4.4"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0"
