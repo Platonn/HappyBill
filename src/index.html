@@ -2,7 +2,7 @@
 <html ng-app="happyBill">
   <head>
     <meta charset="utf-8">
-    <title>happyBill</title>
+    <title>HappyBill</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -31,16 +31,12 @@
       <ul class="sidebar">
         <li class="sidebar-main">
           <a ng-click="master.toggleSidebar()">
-            Dashboard
+            HappyBill
             <span class="menu-icon glyphicon glyphicon-transfer"></span>
           </a>
         </li>
-        <li class="sidebar-title"><span>NAVIGATION</span></li>
-        <li class="sidebar-list">
-          <a href="#">Dashboard <span class="menu-icon fa fa-tachometer"></span></a>
-        </li>
-        <li class="sidebar-list">
-          <a href="#/tables">Tables <span class="menu-icon fa fa-table"></span></a>
+        <li class="sidebar-title"><span>NAVIGATION</span><li class="sidebar-list">
+          <a ui-sref="transactions">Transactions <span class="menu-icon fa fa-money"></span></a>
         </li>
       </ul>
       <div class="sidebar-footer">
