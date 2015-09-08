@@ -1,0 +1,115 @@
+<div class="row">
+	
+	<div class="col-lg-8">
+		<div ui-view="left"></div>
+		
+		<!-- SPIKE - TODO: move it to nested ui-view -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Transactions
+				<input type="text" placeholder="Search" class="form-control input-sm" />
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive table-condensed">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Category</th>
+								<th>Description</th>
+								<th>Date</th>
+								<th>Amount</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Jedzenie</td>
+								<td>Owoce</td>
+								<td>25.08.2015</td>
+								<td>25 zł</td>
+								<td><a class="btn btn-primary btn-circle btn-xs"><i class="fa fa-edit fa-fw"></i></a> <a class="btn btn-danger btn-circle btn-xs"><i class="fa fa-remove fa-fw"></i></a></td>
+							</tr>
+							<tr>
+								<td>Ubrania</td>
+								<td>Sukienki</td>
+								<td>25.08.2015</td>
+								<td>140 zł</td>
+								<td><a class="btn btn-primary btn-circle btn-xs"><i class="fa fa-edit fa-fw"></i></a> <a class="btn btn-danger btn-circle btn-xs"><i class="fa fa-remove fa-fw"></i></a></td>
+							</tr>
+							<tr>
+								<td>Remonty</td>
+								<td>Zestaw kluczy</td>
+								<td>25.08.2015</td>
+								<td>60 zł</td>
+								<td><a class="btn btn-primary btn-circle btn-xs"><i class="fa fa-edit fa-fw"></i></a> <a class="btn btn-danger btn-circle btn-xs"><i class="fa fa-remove fa-fw"></i></a></td>
+							</tr>
+						</tbody>
+					</table>
+        		</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- spike -->
+	<div class="col-lg-4">
+		<div class="panel panel-default" >
+            <div class="panel-heading">
+                <div class="panel-title">Add new</div>
+            </div>     
+
+            <div style="padding-top:30px" class="panel-body" >
+            	<div class="row">
+	                <div style="display:none" id="hb-transaction-add-alert" class="alert alert-danger col-sm-12"></div>
+	                <form id="hb-transaction-add-form" class="form-horizontal" role="form">
+	                    <div style="margin-bottom: 10px" class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-tag fa-fw"></i></span>
+	                        <input id="hb-transaction-form-category" type="text" class="form-control" name="category" placeholder="Category">
+	                    </div>
+
+	                    <div style="margin-bottom: 10px" class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-info fa-fw"></i></span>
+	                        <input id="hb-transaction-form-description" type="text" class="form-control" name="description" value="" placeholder="Description">                                        
+	                    </div>
+	                        
+	                    <div style="margin-bottom: 10px" class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
+	                        <input id="hb-transaction-form-date" type="text" class="form-control" name="date" placeholder="Date">
+	                    </div>
+
+	                    <div style="margin-bottom: 10px" class="input-group">
+	                        <span class="input-group-addon"><i class="fa fa-dollar fa-fw"></i></span>
+	                        <input id="hb-transaction-form-amount" type="number" pattern="^\d+(\.|\,)\d{2}$" class="form-control" name="amount" placeholder="Amount">
+	                    </div>
+
+						<div style="margin-bottom: 10px" class="input-group">
+								<input
+				                    name="hb-transaction-form-type"
+								    bs-switch
+								    ng-model="isSelected=true"
+								    type="checkbox"
+								    switch-label="<span class='glyphicon glyphicon-transfer'></span>"
+								    switch-on-text="Income"
+								    switch-off-text="Outcome"
+								    switch-on-color="success"
+								    switch-off-color="danger"
+								    switch-radio-off="off"
+								    switch-label-width="20px"
+								    ng-true-value="'income'"
+								    ng-false-value="'outcome'"
+								    />
+						</div>
+
+						<div style="margin-bottom: 10px; margin-top: 20px" class="input-group"> 
+							<button type="button" class="btn btn-primary">Confirm</button>
+						</div>
+                	</form>
+                </div>  
+         	</div>                     
+        </div>  
+	</div>
+
+	<div ui-view></div>
+
+
+</div>
