@@ -4,9 +4,9 @@
 		<div ui-view="left"></div>
 		
 		<!-- SPIKE - TODO: move it to nested ui-view -->
-		<div class="panel panel-default">
+		<div class="panel panel-default" ng-controller="TransactionsController as transactionsCtrl">
 			<div class="panel-heading">
-				Transactions
+				Transactions {{transactionsCtrl.title}}
 				<input type="text" placeholder="Search" class="form-control input-sm" />
 			</div>
 			<div class="panel-body">
@@ -86,7 +86,7 @@
 								<input
 				                    name="hb-transaction-form-type"
 								    bs-switch
-								    ng-model="isSelected=true"
+								    ng-model="isSelected"
 								    type="checkbox"
 								    switch-label="<span class='glyphicon glyphicon-transfer'></span>"
 								    switch-on-text="Income"
