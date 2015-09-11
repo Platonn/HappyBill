@@ -6,7 +6,7 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastr) {
+  function config($logProvider, $provide, toastr) {
     // Enable log
     $logProvider.debugEnabled(true);
 
@@ -15,6 +15,8 @@
     toastr.options.positionClass = 'toast-top-right';
     toastr.options.preventDuplicates = true;
     toastr.options.progressBar = true;
+
+    $provide.decorator('$httpBackend', angular.mock.e2e.$httpBackendDecorator);
   }
 
 })();

@@ -13,7 +13,15 @@
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
         controllerAs: 'main'
-      });
+      })
+      .state('transactions', {
+        url: '/transactions',
+        templateUrl: 'app/transactions/transactions.html'
+      })
+        .state('transactions.create', {
+          url: '/transactions/create',
+          templateUrl: 'app/transactions/transactions-form.html'
+        });
 
     $urlRouterProvider.otherwise('/');
   }
