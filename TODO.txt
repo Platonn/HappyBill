@@ -1,0 +1,3 @@
+TODO:
+
+zrobic moduł: mockedBackend i zdefiniować w nim odpowiedzi w .config i .run

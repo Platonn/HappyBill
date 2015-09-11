@@ -6,7 +6,7 @@
 		<!-- SPIKE - TODO: move it to nested ui-view -->
 		<div class="panel panel-default" ng-controller="TransactionsController as transactionsCtrl">
 			<div class="panel-heading">
-				Transactions {{transactionsCtrl.title}}
+				Transactions
 				<input type="text" placeholder="Search" class="form-control input-sm" />
 			</div>
 			<div class="panel-body">
@@ -22,26 +22,21 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Jedzenie</td>
-								<td>Owoce</td>
-								<td>25.08.2015</td>
-								<td>25 zł</td>
-								<td><a class="btn btn-primary btn-circle btn-xs"><i class="fa fa-edit fa-fw"></i></a> <a class="btn btn-danger btn-circle btn-xs"><i class="fa fa-remove fa-fw"></i></a></td>
-							</tr>
-							<tr>
-								<td>Ubrania</td>
-								<td>Sukienki</td>
-								<td>25.08.2015</td>
-								<td>140 zł</td>
-								<td><a class="btn btn-primary btn-circle btn-xs"><i class="fa fa-edit fa-fw"></i></a> <a class="btn btn-danger btn-circle btn-xs"><i class="fa fa-remove fa-fw"></i></a></td>
-							</tr>
-							<tr>
-								<td>Remonty</td>
-								<td>Zestaw kluczy</td>
-								<td>25.08.2015</td>
-								<td>60 zł</td>
-								<td><a class="btn btn-primary btn-circle btn-xs"><i class="fa fa-edit fa-fw"></i></a> <a class="btn btn-danger btn-circle btn-xs"><i class="fa fa-remove fa-fw"></i></a></td>
+							<tr ng-repeat="transaction in transactionsCtrl.transactions">
+								<td>{{transaction.category}}</td>
+								<td>{{transaction.description}}</td>
+								<td>{{transaction.date}}</td>
+								<td>{{transaction.amount}} zł</td>
+								<td>
+									<a class="btn btn-primary btn-circle btn-xs"
+									   ng-click="transactionsCtrl.edit(transaction.id)">
+										<i class="fa fa-edit fa-fw"></i>
+									</a> 
+									<a class="btn btn-danger btn-circle btn-xs"
+									   ng-click="transactionsCtrl.remove(transaction.id)">
+									   <i class="fa fa-remove fa-fw"></i>
+									</a>
+								</td>
 							</tr>
 						</tbody>
 					</table>
