@@ -22,7 +22,6 @@
         ////////////////
 
         function activate() {
-            /* //spike
             var myResource = $resource('/transactions');
             myResource.query()
             .$promise.then(function(transactions) {
@@ -30,34 +29,6 @@
                 vm.transactions          = [].concat(transactions);
                 vm.transactionsDisplayed = [].concat(transactions);
             });
-            */
-
-            var transactions= [
-                {
-                    id:           1,
-                    category:     'Jedzenie MOCK',
-                    description:  'Owoce',
-                    date:         '25.08.2015',
-                    amount:       '25'
-                },
-                {
-                    id:           2,
-                    category:     'Ubrania MOCK',
-                    description:  'Sukienki',
-                    date:         '25.08.2015',
-                    amount:       '140'
-                },
-                {
-                    id:           3,
-                    category:     'Remonty MOCK',
-                    description:  'Zestaw kluczy',
-                    date:         '25.08.2015',
-                    amount:       '60'
-                }
-            ];
-
-            vm.transactions          = [].concat(transactions);
-            vm.transactionsDisplayed = [].concat(transactions);
         }
 
         function add(){
