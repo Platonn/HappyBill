@@ -4,25 +4,38 @@
 		<div ui-view="left"></div>
 		
 		<!-- SPIKE - TODO: move it to nested ui-view -->
-		<div class="panel panel-default" ng-controller="TransactionsController as transactionsCtrl">
+		<div class="panel panel-primary"
+		  ng-controller="TransactionsController as transactionsCtrl"
+		  st-table="transactionsCtrl.transactionsDisplayed"
+		  st-safe-src="transactionsCtrl.transactions">
 			<div class="panel-heading">
-				Transactions
-				<input type="text" placeholder="Search" class="form-control input-sm" />
+				<div class="panel-title col-sm-8 col-xs-12" style="padding-left:5px ;margin-top:5px">Transactions</div>
+				<div class="input-group col-sm-4 col-xs-12">
+                    <input type="text" placeholder="Search" class="form-control input-sm" st-search="" />
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                </div>
 			</div>
 			<div class="panel-body">
-				<div class="table-responsive table-condensed">
+				<div class="table-responsive table-condensed table-stripped">
 					<table class="table">
 						<thead>
 							<tr>
-								<th>Category</th>
-								<th>Description</th>
-								<th>Date</th>
-								<th>Amount</th>
+								<th st-sort="category">Category</th>
+								<th st-sort="description">Description</th>
+								<th st-sort="date">Date</th>
+								<th st-sort="amount">Amount</th>
 								<th>Actions</th>
+							</tr>
+							<tr>
+								<th><input st-search="category" placeholder="Category" class="input-sm form-control" type="search"/></th>
+								<th><input st-search="description" placeholder="Description" class="input-sm form-control" type="search"/></th>
+								<th><input st-search="date" placeholder="Date" class="input-sm form-control" type="search"/></th>
+								<th><input st-search="amount" placeholder="Amount" class="input-sm form-control" type="search"/></th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="transaction in transactionsCtrl.transactions">
+							<tr ng-repeat="transaction in transactionsCtrl.transactionsDisplayed">
 								<td>{{transaction.category}}</td>
 								<td>{{transaction.description}}</td>
 								<td>{{transaction.date}}</td>
@@ -48,7 +61,7 @@
 
 	<!-- spike -->
 	<div class="col-lg-4 col-xs-12">
-		<div class="panel panel-default" >
+		<div class="panel panel-primary" >
             <div class="panel-heading">
                 <div class="panel-title">Add new</div>
             </div>     

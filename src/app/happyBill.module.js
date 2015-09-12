@@ -10,7 +10,9 @@
     	'ngCookies', 
 
     	// 3rd party:
-    	'frapontillo.bootstrap-switch']
+    	'frapontillo.bootstrap-switch',
+        'smart-table'
+        ]
     );
 
 })();
