@@ -6,7 +6,7 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, $provide, toastr) {
+  function config($logProvider, $provide, toastr, $translateProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
 
@@ -17,6 +17,11 @@
     toastr.options.progressBar = true;
 
     $provide.decorator('$httpBackend', angular.mock.e2e.$httpBackendDecorator);
+
+    $translateProvider.useStaticFilesLoader({
+      prefix: '/assets/languages/',
+      suffix: '.json'
+    });
   }
 
 })();
