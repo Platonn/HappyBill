@@ -3,15 +3,18 @@
 
   angular
     .module('happyBill', [
-    	// angular's:
-    	'ngResource', 
-    	'ui.router', 
-    	'ui.bootstrap',
-    	'ngCookies', 
+        	// angular's:
+        	'ngResource', 
+        	'ui.router', 
+        	'ui.bootstrap',
+        	'ngCookies',
 
-    	// 3rd party:
-    	'frapontillo.bootstrap-switch',
-        'smart-table'
+        	// 3rd party:
+        	'frapontillo.bootstrap-switch',
+            'smart-table',
+
+            //my modules
+            'happyBill.translate',
         ]
     );
 

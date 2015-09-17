@@ -9,9 +9,9 @@
 		  st-table="transactionsCtrl.transactionsDisplayed"
 		  st-safe-src="transactionsCtrl.transactions">
 			<div class="panel-heading">
-				<div class="panel-title col-sm-8 col-xs-12" style="padding-left:5px ;margin-top:5px">Transactions</div>
+				<div class="panel-title col-sm-8 col-xs-12" style="padding-left:5px ;margin-top:5px">{{ 'ROUTES.TRANSACTIONS' | translate }}</div>
 				<div class="input-group col-sm-4 col-xs-12">
-                    <input type="text" placeholder="Search" class="form-control input-sm" st-search="" />
+                    <input type="text" placeholder="Search" class="form-control input-sm" st-search="" / placeholder="{{ 'COMMON.ACTIONS.SEARCH' | translate }}">
                     <span class="input-group-addon"><i class="fa fa-search"></i></span>
                 </div>
 			</div>
@@ -20,11 +20,11 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th st-sort="category">Category</th>
-								<th st-sort="description">Description</th>
-								<th st-sort="date">Date</th>
-								<th st-sort="amount">Amount</th>
-								<th>Actions</th>
+								<th>{{ 'TRANSACTIONS.CATEGORY' | translate }}</th>
+								<th>{{ 'TRANSACTIONS.DESCRIPTION' | translate }}</th>
+								<th>{{ 'TRANSACTIONS.DATE' | translate }}</th>
+								<th>{{ 'TRANSACTIONS.AMOUNT' | translate }}</th>
+								<th></th>
 							</tr>
 							<tr>
 								<th><input st-search="category" placeholder="Category" class="input-sm form-control" type="search"/></th>
@@ -63,7 +63,7 @@
 	<div class="col-lg-4 col-xs-12">
 		<div class="panel panel-primary" >
             <div class="panel-heading">
-                <div class="panel-title">Add new</div>
+                <div class="panel-title">{{ 'TRANSACTIONS.ADD' | translate }}</div>
             </div>     
 
             <div style="padding-top:30px" class="panel-body" >
@@ -72,22 +72,22 @@
 	                <form id="hb-transaction-add-form" class="form-horizontal" role="form">
 	                    <div style="margin-bottom: 10px" class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-tag fa-fw"></i></span>
-	                        <input id="hb-transaction-form-category" type="text" class="form-control" name="category" placeholder="Category">
+	                        <input id="hb-transaction-form-category" type="text" class="form-control" name="category" placeholder="{{ 'TRANSACTIONS.CATEGORY' | translate }}">
 	                    </div>
 
 	                    <div style="margin-bottom: 10px" class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-info fa-fw"></i></span>
-	                        <input id="hb-transaction-form-description" type="text" class="form-control" name="description" value="" placeholder="Description">                                        
+	                        <input id="hb-transaction-form-description" type="text" class="form-control" name="description" value="" placeholder="{{ 'TRANSACTIONS.DESCRIPTION' | translate }}">                                        
 	                    </div>
 	                        
 	                    <div style="margin-bottom: 10px" class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
-	                        <input id="hb-transaction-form-date" type="text" class="form-control" name="date" placeholder="Date">
+	                        <input id="hb-transaction-form-date" type="text" class="form-control" name="date" placeholder="{{ 'TRANSACTIONS.DATE' | translate }}">
 	                    </div>
 
 	                    <div style="margin-bottom: 10px" class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-dollar fa-fw"></i></span>
-	                        <input id="hb-transaction-form-amount" type="number" pattern="^\d+(\.|\,)\d{2}$" class="form-control" name="amount" placeholder="Amount">
+	                        <input id="hb-transaction-form-amount" type="number" pattern="^\d+(\.|\,)\d{2}$" class="form-control" name="amount" placeholder="{{ 'TRANSACTIONS.AMOUNT' | translate }}">
 	                    </div>
 
 						<div style="margin-bottom: 10px" class="input-group">
@@ -97,8 +97,8 @@
 								    ng-model="isSelected"
 								    type="checkbox"
 								    switch-label="<span class='glyphicon glyphicon-transfer'></span>"
-								    switch-on-text="Income"
-								    switch-off-text="Outcome"
+								    switch-on-text="{{ 'TRANSACTIONS.INCOME' | translate }}"
+								    switch-off-text="{{ 'TRANSACTIONS.OUTCOME' | translate }}"
 								    switch-on-color="success"
 								    switch-off-color="danger"
 								    switch-radio-off="off"
@@ -108,7 +108,7 @@
 						</div>
 
 						<div style="margin-bottom: 10px; margin-top: 20px" class="input-group"> 
-							<button type="button" class="btn btn-primary">Confirm</button>
+							<button type="button" class="btn btn-primary">{{ 'COMMON.ADD' | translate }}</button>
 						</div>
                 	</form>
                 </div>  
