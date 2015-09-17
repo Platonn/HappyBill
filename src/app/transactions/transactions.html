@@ -6,19 +6,19 @@
 		<!-- SPIKE - TODO: move it to nested ui-view -->
 		<div class="panel panel-default" ng-controller="TransactionsController as transactionsCtrl">
 			<div class="panel-heading">
-				Transactions
-				<input type="text" placeholder="Search" class="form-control input-sm" />
+				{{ 'ROUTES.TRANSACTIONS' | translate }}
+				<input type="text" placeholder="{{ 'COMMON.ACTIONS.SEARCH' | translate }}" class="form-control input-sm" />
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive table-condensed">
 					<table class="table">
 						<thead>
 							<tr>
-								<th>Category</th>
-								<th>Description</th>
-								<th>Date</th>
-								<th>Amount</th>
-								<th>Actions</th>
+								<th>{{ 'TRANSACTIONS.CATEGORY' | translate }}</th>
+								<th>{{ 'TRANSACTIONS.DESCRIPTION' | translate }}</th>
+								<th>{{ 'TRANSACTIONS.DATE' | translate }}</th>
+								<th>{{ 'TRANSACTIONS.AMOUNT' | translate }}</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -50,7 +50,7 @@
 	<div class="col-lg-4">
 		<div class="panel panel-default" >
             <div class="panel-heading">
-                <div class="panel-title">Add new</div>
+                <div class="panel-title">{{ 'TRANSACTIONS.ADD' | translate }}</div>
             </div>     
 
             <div style="padding-top:30px" class="panel-body" >
@@ -59,22 +59,22 @@
 	                <form id="hb-transaction-add-form" class="form-horizontal" role="form">
 	                    <div style="margin-bottom: 10px" class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-tag fa-fw"></i></span>
-	                        <input id="hb-transaction-form-category" type="text" class="form-control" name="category" placeholder="Category">
+	                        <input id="hb-transaction-form-category" type="text" class="form-control" name="category" placeholder="{{ 'TRANSACTIONS.CATEGORY' | translate }}">
 	                    </div>
 
 	                    <div style="margin-bottom: 10px" class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-info fa-fw"></i></span>
-	                        <input id="hb-transaction-form-description" type="text" class="form-control" name="description" value="" placeholder="Description">                                        
+	                        <input id="hb-transaction-form-description" type="text" class="form-control" name="description" value="" placeholder="{{ 'TRANSACTIONS.DESCRIPTION' | translate }}">                                        
 	                    </div>
 	                        
 	                    <div style="margin-bottom: 10px" class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
-	                        <input id="hb-transaction-form-date" type="text" class="form-control" name="date" placeholder="Date">
+	                        <input id="hb-transaction-form-date" type="text" class="form-control" name="date" placeholder="{{ 'TRANSACTIONS.DATE' | translate }}">
 	                    </div>
 
 	                    <div style="margin-bottom: 10px" class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-dollar fa-fw"></i></span>
-	                        <input id="hb-transaction-form-amount" type="number" pattern="^\d+(\.|\,)\d{2}$" class="form-control" name="amount" placeholder="Amount">
+	                        <input id="hb-transaction-form-amount" type="number" pattern="^\d+(\.|\,)\d{2}$" class="form-control" name="amount" placeholder="{{ 'TRANSACTIONS.AMOUNT' | translate }}">
 	                    </div>
 
 						<div style="margin-bottom: 10px" class="input-group">
@@ -84,8 +84,8 @@
 								    ng-model="isSelected"
 								    type="checkbox"
 								    switch-label="<span class='glyphicon glyphicon-transfer'></span>"
-								    switch-on-text="Income"
-								    switch-off-text="Outcome"
+								    switch-on-text="{{ 'TRANSACTIONS.INCOME' | translate }}"
+								    switch-off-text="{{ 'TRANSACTIONS.OUTCOME' | translate }}"
 								    switch-on-color="success"
 								    switch-off-color="danger"
 								    switch-radio-off="off"
@@ -96,7 +96,7 @@
 						</div>
 
 						<div style="margin-bottom: 10px; margin-top: 20px" class="input-group"> 
-							<button type="button" class="btn btn-primary">Confirm</button>
+							<button type="button" class="btn btn-primary">{{ 'COMMON.ADD' | translate }}</button>
 						</div>
                 	</form>
                 </div>  
