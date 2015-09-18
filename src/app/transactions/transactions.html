@@ -23,17 +23,10 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>{{ 'TRANSACTIONS.CATEGORY' | translate }}</th>
-								<th>{{ 'TRANSACTIONS.DESCRIPTION' | translate }}</th>
-								<th>{{ 'TRANSACTIONS.DATE' | translate }}</th>
-								<th>{{ 'TRANSACTIONS.AMOUNT' | translate }}</th>
-								<th></th>
-							</tr>
-							<tr>
-								<th><input st-search="category" placeholder="Category" class="input-sm form-control" type="search"/></th>
-								<th><input st-search="description" placeholder="Description" class="input-sm form-control" type="search"/></th>
-								<th><input st-search="date" placeholder="Date" class="input-sm form-control" type="search"/></th>
-								<th><input st-search="amount" placeholder="Amount" class="input-sm form-control" type="search"/></th>
+								<th><input st-search="category" placeholder="{{ 'TRANSACTIONS.CATEGORY' | translate }}" class="input-sm form-control" type="search"/></th>
+								<th><input st-search="description" placeholder="{{ 'TRANSACTIONS.DESCRIPTION' | translate }}" class="input-sm form-control" type="search"/></th>
+								<th><input st-search="date" placeholder="{{ 'TRANSACTIONS.DATE' | translate }}" class="input-sm form-control" type="search"/></th>
+								<th><input st-search="amount" placeholder="{{ 'TRANSACTIONS.AMOUNT' | translate }}" class="input-sm form-control" type="search"/></th>
 								<th></th>
 							</tr>
 						</thead>
@@ -43,7 +36,7 @@
 								<td>{{transaction.description}}</td>
 								<td>{{transaction.date}}</td>
 								<td>{{transaction.amount}} zł</td>
-								<td>
+								<td class="hb-column-actions">
 									<a class="btn btn-primary btn-circle btn-xs"
 									   ng-click="transactionsCtrl.edit(transaction.id)">
 										<i class="fa fa-edit fa-fw"></i>
