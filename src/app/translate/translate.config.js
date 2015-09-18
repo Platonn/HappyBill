@@ -46,7 +46,7 @@
 					"AMOUNT": "Kwota",
 					"INCOME": "Przychód",
 					"OUTCOME": "Wydatek",
-					"ADD": "Dodaj nową",
+					"ADD": "Dodaj nową transakcję",
 				},
 
 				"COMMON": {
