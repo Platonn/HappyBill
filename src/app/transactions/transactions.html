@@ -1,10 +1,13 @@
 <div class="row">
 	
-	<div class="col-lg-8">
+	<div class="col-lg-8 col-xs-12">
 		<div ui-view="left"></div>
 		
 		<!-- SPIKE - TODO: move it to nested ui-view -->
-		<div class="panel panel-default" ng-controller="TransactionsController as transactionsCtrl">
+		<div class="panel panel-primary"
+		  ng-controller="TransactionsController as transactionsCtrl"
+		  st-table="transactionsCtrl.transactionsDisplayed"
+		  st-safe-src="transactionsCtrl.transactions">
 			<div class="panel-heading">
 				<div class="panel-title pull-left" style="padding-top:5px">
 					{{ 'ROUTES.TRANSACTIONS' | translate }}
@@ -16,7 +19,7 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="panel-body">
-				<div class="table-responsive table-condensed">
+				<div class="table-responsive table-condensed table-stripped">
 					<table class="table">
 						<thead>
 							<tr>
@@ -26,9 +29,16 @@
 								<th>{{ 'TRANSACTIONS.AMOUNT' | translate }}</th>
 								<th></th>
 							</tr>
+							<tr>
+								<th><input st-search="category" placeholder="Category" class="input-sm form-control" type="search"/></th>
+								<th><input st-search="description" placeholder="Description" class="input-sm form-control" type="search"/></th>
+								<th><input st-search="date" placeholder="Date" class="input-sm form-control" type="search"/></th>
+								<th><input st-search="amount" placeholder="Amount" class="input-sm form-control" type="search"/></th>
+								<th></th>
+							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="transaction in transactionsCtrl.transactions">
+							<tr ng-repeat="transaction in transactionsCtrl.transactionsDisplayed">
 								<td>{{transaction.category}}</td>
 								<td>{{transaction.description}}</td>
 								<td>{{transaction.date}}</td>
@@ -53,15 +63,15 @@
 	</div>
 
 	<!-- spike -->
-	<div class="col-lg-4">
-		<div class="panel panel-default" >
+	<div class="col-lg-4 col-xs-12">
+		<div class="panel panel-primary" >
             <div class="panel-heading">
                 <div class="panel-title">{{ 'TRANSACTIONS.ADD' | translate }}</div>
             </div>     
 
             <div style="padding-top:30px" class="panel-body" >
             	<div class="row">
-	                <div style="display:none" id="hb-transaction-add-alert" class="alert alert-danger col-sm-12"></div>
+	                <div style="display:none" id="hb-transaction-add-alert" class="alert alert-danger col-xs-12"></div>
 	                <form id="hb-transaction-add-form" class="form-horizontal" role="form">
 	                    <div style="margin-bottom: 10px" class="input-group">
 	                        <span class="input-group-addon"><i class="fa fa-tag fa-fw"></i></span>
@@ -95,7 +105,6 @@
 								    switch-on-color="success"
 								    switch-off-color="danger"
 								    switch-radio-off="off"
-								    switch-label-width="20px"
 								    ng-true-value="'income'"
 								    ng-false-value="'outcome'"
 								    />

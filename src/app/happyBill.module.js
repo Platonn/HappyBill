@@ -11,6 +11,7 @@
 
         	// 3rd party:
         	'frapontillo.bootstrap-switch',
+            'smart-table',
 
             //my modules
             'happyBill.translate',

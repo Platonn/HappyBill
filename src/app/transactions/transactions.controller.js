@@ -8,9 +8,10 @@
 
     /* @ngInject */
     function TransactionsController($resource, $log) {
-        var vm = this;
-        vm.title = 'TransactionsController';
-        vm.transactions = [];
+        var vm                      = this;
+        vm.title                    = 'TransactionsController';
+        vm.transactions             = [];
+        vm.transactionsDisplayed    = [];
 
         vm.add          = add;
         vm.edit         = edit;
@@ -25,7 +26,8 @@
             myResource.query()
             .$promise.then(function(transactions) {
                 console.log("GOT mocked backend!!!");
-                vm.transactions = transactions;
+                vm.transactions          = [].concat(transactions);
+                vm.transactionsDisplayed = [].concat(transactions);
             });
         }
 
