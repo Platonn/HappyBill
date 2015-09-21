@@ -13,9 +13,10 @@
         	'frapontillo.bootstrap-switch',
             'smart-table',
             'underscore',
-            
+
             //my modules
             'happyBill.translate',
+            'happyBill.safeCurrencyMath',
         ]
     );
 
