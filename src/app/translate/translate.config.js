@@ -40,6 +40,9 @@
 				},
 
 				"TRANSACTIONS": {
+					"TRANSACTIONS": "Transakcje",
+					"BY_CATEGORY": "(według kategorii)",
+					"ALL": "(wszystkie)",
 					"CATEGORY": "Kategoria",
 					"DESCRIPTION": "Opis",
 					"DATE": "Data",

@@ -7,11 +7,14 @@
 
 
     /* @ngInject */
-    function TransactionsController($resource, $log) {
+    function TransactionsController($resource, $log, currencyPrecision, _, safeCurrencyMath) {
         var vm                      = this;
         vm.title                    = 'TransactionsController';
         vm.transactions             = [];
         vm.transactionsDisplayed    = [];
+
+        vm.transactionsSummariesByCategory             = [];
+        vm.transactionsSummariesByCategoryDisplayed    = [];
 
         vm.add          = add;
         vm.edit         = edit;
@@ -26,8 +29,9 @@
             myResource.query()
             .$promise.then(function(transactions) {
                 console.log("GOT mocked backend!!!");
-                vm.transactions          = [].concat(transactions);
-                vm.transactionsDisplayed = [].concat(transactions);
+
+                bindTransactions(transactions);
+                bindTransactionsSummariesByCategory(transactions);
             });
         }
 
@@ -41,6 +45,27 @@
 
         function remove(transactionId){
             $log.warn("remove() to be implemented!"); // TODO
+        }
+
+
+        //private
+
+        function bindTransactions(transactions) {
+            vm.transactions          = [].concat(transactions);
+            vm.transactionsDisplayed = [].concat(transactions);
+        }
+
+        function bindTransactionsSummariesByCategory(transactions) {
+            var transactionsByCategory = _.groupBy(transactions, 'category');
+            var transactionsSummariesByCategory = _.map(transactionsByCategory, function(transactions, category) {
+                var result = {};
+                result.amount = safeCurrencyMath.sumCollection(_.pluck(transactions, 'amount'));
+                result.category = category;
+                return result;
+            });
+
+            vm.transactionsSummariesByCategory          = [].concat(transactionsSummariesByCategory);
+            vm.transactionsSummariesByCategoryDisplayed = [].concat(transactionsSummariesByCategory);
         }
     }
 })();
