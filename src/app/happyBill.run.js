@@ -286,7 +286,7 @@
         "category": "Jedzenie",
         "description": "occaecat non nulla",
         "date": "2015-02-02",
-        "isExpense": truev
+        "isExpense": true
       },
       {
         "id": 31,
@@ -1014,7 +1014,6 @@
         "category": "Prezenty dla znajomych",
         "description": "consectetur nulla ea",
         "date": "2015-07-23",
-        "isExpense": true,
         "isExpense": true
       },
       {
@@ -1151,7 +1150,6 @@
         "category": "Prezenty dla znajomych",
         "description": "cupidatat irure magna",
         "date": "2014-11-17",
-        "isExpense": true,
         "isExpense": true
       },
       {
