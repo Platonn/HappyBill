@@ -6,7 +6,7 @@
         .service('safeCurrencyMath', safeCurrencyMath);
 
     /* @ngInject */
-    function safeCurrencyMath(currencyPrecision) {
+    function safeCurrencyMath(currencyPrecision, _) {
         this.sumCollection = sumCollection;
 
         // avoids floating point errors by multiplicating elements by precisionFactor, doing addition and diving result then;

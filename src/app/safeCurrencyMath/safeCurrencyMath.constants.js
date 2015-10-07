@@ -1,4 +1,3 @@
-/* global currencyPrecision:false */
 (function() {
   'use strict';
 

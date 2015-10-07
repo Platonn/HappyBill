@@ -16,15 +16,8 @@
 
 	    $translateProvider.preferredLanguage('PL');
 
-		useLocalStorage($translateProvider)
+		useLocalStorage($translateProvider);
     }
-
-	function useStaticFilesLoader($translateProvider) {
-		$translateProvider.useStaticFilesLoader({
-			prefix: '/assets/languages/',
-			suffix: '.json'
-		});
-	}
 
 	function useLocalStorage($translateProvider){
 		$translateProvider.useLocalStorage();

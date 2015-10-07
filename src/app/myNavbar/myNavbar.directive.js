@@ -23,7 +23,8 @@
         /** @ngInject */
         function NavbarController() {
             var vm = this;
-            vm.navbarCollapsed; // "vm.navbarCollapsed" is avaible by directive option "bindToController: true"
+            vm.navbarCollapsed = true; // "vm.navbarCollapsed" is avaible by directive option "bindToController: true"
+            
             vm.toggleNavbar = toggleNavbar;
 
             activate();
@@ -31,11 +32,10 @@
             ////////////////
 
             function toggleNavbar() {
-                vm.navbarCollapsed = !vm.navbarCollapsed
+                vm.navbarCollapsed = !vm.navbarCollapsed;
             }
 
             function activate() {
-                vm.navbarCollapsed = true;
             }    
         }
     }

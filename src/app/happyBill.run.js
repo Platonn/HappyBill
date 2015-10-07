@@ -21,7 +21,7 @@
   function registerMockedHttpBackend($httpBackend){
     // mock backend:
     $httpBackend.whenGET('/transactions')
-      .respond(function(method,url,data) {
+      .respond(function() {
         return [200, getMockTransactions()];
       }
     );

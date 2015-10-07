@@ -16,10 +16,12 @@
         vm.transactionsSummariesByCategory             = [];
         vm.transactionsSummariesByCategoryDisplayed    = [];
 
+        /* //TODO
         vm.add          = add;
         vm.edit         = edit;
         vm.remove       = remove;
-
+        */
+        
         activate();
 
         ////////////////
@@ -28,13 +30,13 @@
             var myResource = $resource('/transactions');
             myResource.query()
             .$promise.then(function(transactions) {
-                console.log("GOT mocked backend!!!");
 
                 bindTransactions(transactions);
                 bindTransactionsSummariesByCategory(transactions);
             });
         }
 
+        /* //TODO
         function add(){
             $log.warn("add() to be implemented!");  // TODO
         }
@@ -46,8 +48,8 @@
         function remove(transactionId){
             $log.warn("remove() to be implemented!"); // TODO
         }
-
-
+        */
+    
         //private
 
         function bindTransactions(transactions) {
