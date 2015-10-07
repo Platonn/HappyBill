@@ -13,22 +13,20 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<div class="table-responsive table-condensed table-stripped">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>{{ 'TRANSACTIONS.CATEGORY' | translate }}</th>
-								<th>{{ 'TRANSACTIONS.AMOUNT' | translate }}</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="transaction in transactionsCtrl.transactionsSummariesByCategoryDisplayed">
-								<td>{{transaction.category}}</td>
-								<td>{{transaction.amount}} zł</td>
-							</tr>
-						</tbody>
-					</table>
-        		</div>
+				<table class="table table-responsive table-condensed table-stripped table-hover">
+					<thead>
+						<tr>
+							<th>{{ 'TRANSACTIONS.CATEGORY' | translate }}</th>
+							<th>{{ 'TRANSACTIONS.AMOUNT' | translate }}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="transaction in transactionsCtrl.transactionsSummariesByCategoryDisplayed">
+							<td>{{transaction.category}}</td>
+							<td>{{transaction.amount}} zł</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<div class="panel panel-primary"
@@ -40,37 +38,35 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<div class="table-responsive table-condensed table-stripped">
-					<table class="table">
-						<thead>
-							<tr>
-								<th><input st-search="category" placeholder="{{ 'TRANSACTIONS.CATEGORY' | translate }}" class="input-sm form-control" type="search"/></th>
-								<th><input st-search="description" placeholder="{{ 'TRANSACTIONS.DESCRIPTION' | translate }}" class="input-sm form-control" type="search"/></th>
-								<th><input st-search="date" placeholder="{{ 'TRANSACTIONS.DATE' | translate }}" class="input-sm form-control" type="search"/></th>
-								<th><input st-search="amount" placeholder="{{ 'TRANSACTIONS.AMOUNT' | translate }}" class="input-sm form-control" type="search"/></th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="transaction in transactionsCtrl.transactionsDisplayed">
-								<td>{{transaction.category}}</td>
-								<td>{{transaction.description}}</td>
-								<td>{{transaction.date}}</td>
-								<td>{{transaction.amount}} zł</td>
-								<td class="hb-column-actions">
-									<a class="btn btn-primary btn-circle btn-xs"
-									   ng-click="transactionsCtrl.edit(transaction.id)">
-										<i class="fa fa-edit fa-fw"></i>
-									</a> 
-									<a class="btn btn-danger btn-circle btn-xs"
-									   ng-click="transactionsCtrl.remove(transaction.id)">
-									   <i class="fa fa-remove fa-fw"></i>
-									</a>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-        		</div>
+				<table class="table table-responsive table-condensed table-stripped table-hover">
+					<thead>
+						<tr>
+							<th><input st-search="category" placeholder="{{ 'TRANSACTIONS.CATEGORY' | translate }}" class="input-sm form-control" type="search"/></th>
+							<th><input st-search="description" placeholder="{{ 'TRANSACTIONS.DESCRIPTION' | translate }}" class="input-sm form-control" type="search"/></th>
+							<th><input st-search="date" placeholder="{{ 'TRANSACTIONS.DATE' | translate }}" class="input-sm form-control" type="search"/></th>
+							<th><input st-search="amount" placeholder="{{ 'TRANSACTIONS.AMOUNT' | translate }}" class="input-sm form-control" type="search"/></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="transaction in transactionsCtrl.transactionsDisplayed">
+							<td>{{transaction.category}}</td>
+							<td>{{transaction.description}}</td>
+							<td>{{transaction.date}}</td>
+							<td>{{transaction.amount}} zł</td>
+							<td class="hb-column-actions">
+								<a class="btn btn-primary btn-circle btn-xs"
+								   ng-click="transactionsCtrl.edit(transaction.id)">
+									<i class="fa fa-edit fa-fw"></i>
+								</a> 
+								<a class="btn btn-danger btn-circle btn-xs"
+								   ng-click="transactionsCtrl.remove(transaction.id)">
+								   <i class="fa fa-remove fa-fw"></i>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
