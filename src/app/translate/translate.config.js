@@ -37,6 +37,7 @@
 
 				"ROUTES": {
 					"TRANSACTIONS": "Transakcje",
+					"CATEGORIES": "Kategorie",
 				},
 
 				"TRANSACTIONS": {

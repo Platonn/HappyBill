@@ -19,117 +19,56 @@
     <!-- endinject -->
     <!-- endbuild -->
   </head>
-  <body ng-controller="MasterController as master">
+  <body>
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div id="page-wrapper" class="container-fluid" ng-class="{'open': master.toggle}" ng-cloak>
-
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-      <ul class="sidebar">
-        <li class="sidebar-main">
-          <a ng-click="master.toggleSidebar()">
-            {{'APPNAME' | translate}}
-            <span class="menu-icon glyphicon glyphicon-transfer"></span>
-          </a>
-        </li>
-        <li class="sidebar-list">
-          <a ui-sref="transactions">{{'ROUTES.TRANSACTIONS' | translate}} <span class="menu-icon fa fa-money"></span></a>
-        </li>
-      </ul>
-      <div class="sidebar-footer">
-        <div class="col-xs-4">
-          <a href="https://github.com/rdash/rdash-angular" target="_blank">
-            Github
-          </a>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" ng-click="navbarCollapsed = !navbarCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">{{ 'APPNAME' | translate }}</a>
         </div>
-        <div class="col-xs-4">
-          <a href="https://github.com/rdash/rdash-angular/README.md" target="_blank">
-            About
-          </a>
+        <div class="collapse navbar-collapse" collapse="navbarCollapsed">
+          <ul class="nav navbar-nav">
+            <li ui-sref-active="active"><a ui-sref="transactions">{{ 'ROUTES.TRANSACTIONS' | translate }}</a></li>
+            <li ui-sref-active="active"><a ui-sref="categories">{{ 'ROUTES.CATEGORIES' | translate }}</a></li>
+            <!-- spike
+            <li class="dropdown" dropdown>
+              <a href="#" class="dropdown-toggle" dropdown-toggle data-toggle="dropdown" role="button">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu" dropdown-menu>
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+            -->
+          </ul>
         </div>
-        <div class="col-xs-4">
-          <a href="#">
-            Support
-          </a>
-        </div>
+        <!--/.nav-collapse -->
       </div>
-    </div>
-    <!-- End Sidebar -->
+    </nav>
 
-    <div id="content-wrapper">
-      <div class="page-content">
 
-        <!-- Header Bar -->
-        <div class="row header">
-          <div class="col-xs-12">
-            <div class="user pull-right">
-              <div class="item dropdown">
-                <a href="#" class="dropdown-toggle">
-                  <img src="img/avatar.jpg">
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li class="dropdown-header">
-                    Joe Bloggs
-                  </li>
-                  <li class="divider"></li>
-                  <li class="link">
-                    <a href="#">
-                      Profile
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a href="#">
-                      Menu Item
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a href="#">
-                      Menu Item
-                    </a>
-                  </li>
-                  <li class="divider"></li>
-                  <li class="link">
-                    <a href="#">
-                      Logout
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="item dropdown">
-               <a href="#" class="dropdown-toggle">
-                  <i class="fa fa-bell-o"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li class="dropdown-header">
-                    Notifications
-                  </li>
-                  <li class="divider"></li>
-                  <li>
-                    <a href="#">Server Down!</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="meta">
-              <div class="page">
-                {{'APPNAME' | translate}}
-              </div>
-              <div class="breadcrumb-links">
-                Home / Dashboard
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- End Header Bar -->
-
-        <!-- Main Content -->
+    <div class="container">
         <div ui-view></div>
+    </div>
+    <!-- /container -->
 
-      </div><!-- End Page Content -->
-    </div><!-- End Content Wrapper -->
+    
+
+    
   </div><!-- End Page Wrapper -->
 
     <!-- build:js(src) scripts/vendor.js -->
