@@ -8,9 +8,11 @@
 			</div>
             <div class="panel-body">
                 <div style="margin-bottom: 10px" class="input-group">
-                    <input date-range-picker type="text" class="form-control datepicker" ng-model="datePicker.dateRange" placeholder="{{ 'TRANSACTIONS.CHOOSE_DATERANGE' | translate }}">
+                    <input date-range-picker type="text" class="form-control datepicker" ng-model="transactionsCtrl.search.value" placeholder="{{ 'TRANSACTIONS.CHOOSE_DATERANGE' | translate }}"
+                    options="{{transactionsCtrl.search.options}}">
                     <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
                     <!-- TODO: set object with polish locale -->
+                    <!-- TODO: set object with predefined ranges -->
                 </div>
 
          		<hr/>
