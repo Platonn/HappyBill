@@ -1,15 +1,20 @@
 <div class="row" ng-controller="TransactionsController as transactionsCtrl">
-	
 	<div class="col-lg-4 col-xs-12">
 		<div class="panel panel-primary" >
-            <div class="panel-heading">
-                <div class="panel-title">Szukaj transakcji</div>
-            </div>
-
+			<div class="panel-heading">
+				<div class="panel-title">
+					<i class="fa fa-search fa-fw"></i> {{ 'TRANSACTIONS.SEARCH' | translate }}
+				</div>
+			</div>
             <div class="panel-body">
-            	<p>Kalendarz miesiącami.</p>
-            	<p>Dwa datapickery - od do. (po kliknięciu w kalendarzu powyżej.</p>
-         	
+                <div style="margin-bottom: 10px" class="input-group">
+                    <input date-range-picker type="text" class="form-control datepicker" ng-model="datePicker.dateRange" placeholder="{{ 'TRANSACTIONS.CHOOSE_DATERANGE' | translate }}">
+                    <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
+                    <!-- TODO: set object with polish locale -->
+                </div>
+
+         		<hr/>
+
 				<table class="table table-responsive table-condensed table-stripped table-hover"
 				st-table="transactionsCtrl.transactionsSummariesByCategoryDisplayed"
 		  		st-safe-src="transactionsCtrl.transactionsSummariesByCategory">
@@ -45,8 +50,15 @@
 						<tr>
 							<th><input st-search="category" placeholder="{{ 'TRANSACTIONS.CATEGORY' | translate }}" class="input-sm form-control" type="search"/></th>
 							<th><input st-search="description" placeholder="{{ 'TRANSACTIONS.DESCRIPTION' | translate }}" class="input-sm form-control" type="search"/></th>
-							<th><input st-search="date" placeholder="{{ 'TRANSACTIONS.DATE' | translate }}" class="input-sm form-control" type="search"/></th>
-							<th><input st-search="amount" placeholder="{{ 'TRANSACTIONS.AMOUNT' | translate }}" class="input-sm form-control" type="search"/></th>
+							<th>
+								<input st-search="date" placeholder="{{ 'TRANSACTIONS.DATE_FROM' | translate }}" class="input-sm form-control" type="search" disabled="disabled"/>
+								<input st-search="date" placeholder="{{ 'TRANSACTIONS.DATE_TO' | translate }}" class="input-sm form-control" type="search" disabled="disabled"/>
+							</th>
+							<th>
+								<input st-search="amount" placeholder="{{ 'TRANSACTIONS.AMOUNT_FROM' | translate }}" class="input-sm form-control" type="search" disabled="disabled" />
+								<input st-search="amount" placeholder="{{ 'TRANSACTIONS.AMOUNT_TO' | translate }}" class="input-sm form-control" type="search" disabled="disabled"/>
+								</div>
+							</th>
 							<th></th>
 						</tr>
 					</thead>

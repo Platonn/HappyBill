@@ -40,10 +40,16 @@
 					"CATEGORY": "Kategoria",
 					"DESCRIPTION": "Opis",
 					"DATE": "Data",
+					"DATE_FROM": "Data od",
+					"DATE_TO": "Data do",
 					"AMOUNT": "Kwota",
+					"AMOUNT_FROM": "Kwota od",
+					"AMOUNT_TO": "Kwota do",
 					"INCOME": "Przychód",
 					"OUTCOME": "Wydatek",
 					"ADD": "Dodaj nową transakcję",
+					"CHOOSE_DATERANGE": "Wybierz zakres dat",
+					"SEARCH": "Szukaj"
 				},
 
 				"COMMON": {

@@ -6,17 +6,20 @@
         	// angular's:
         	'ngResource', 
         	'ui.router', 
-        	'ui.bootstrap',
+        	'mgcrea.ngStrap',
         	'ngCookies',
 
         	// 3rd party:
         	'frapontillo.bootstrap-switch',
             'smart-table',
             'underscore',
+            'daterangepicker',
 
             //my modules
             'happyBill.translate',
             'happyBill.safeCurrencyMath',
+
+            
         ]
     );
 
