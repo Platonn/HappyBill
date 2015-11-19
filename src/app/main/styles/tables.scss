@@ -5,14 +5,7 @@ tr > .hb-column-actions {
 }
 
 .hb-table-selectable {
-	tr {
+	tbody tr {
 		cursor: pointer;
-
-		&.st-selected {
-			background-color: $brand-info;
-		}
-		&.st-selected:hover {
-			background-color: $brand-info;
-		}
 	}
 }

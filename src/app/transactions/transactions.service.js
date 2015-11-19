@@ -8,6 +8,7 @@
     /* @ngInject */
     function TransactionsService() {
         this.getFilteredTransactions = getFilteredTransactions;
+        this.filterByDateTransactions = filterByDateTransactions;
 
         ////////////////
 
@@ -44,7 +45,7 @@
                     .value();
                 return result;
             } else {
-                return transactions;
+                return [];
             }
         }
     }

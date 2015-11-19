@@ -37,14 +37,17 @@
         }
 
         $scope.$watchCollection('filters', function(newValue, oldValue) {
-            bindFilteredTransactions();
+            if(newValue.date) {
+                var filteredTransactions = TransactionsService.filterByDateTransactions(vm.transactionsAll, vm.filters);
+                bindCategorySummaries(filteredTransactions);
+                bindFilteredTransactions();
+            }
         });
 
         function initTransactions(){
             TransactionsDataService.query().$promise
                 .then(function(transactionsAll) {
                     vm.transactionsAll = transactionsAll;
-                    bindCategorySummaries(vm.transactionsAll);
                 });
         }
 

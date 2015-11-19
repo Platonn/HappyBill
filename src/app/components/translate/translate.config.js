@@ -33,31 +33,34 @@
 					"CATEGORIES": "Kategorie",
 				},
 
-				"TRANSACTIONS": {
-					"TRANSACTIONS": "Transakcje",
-					"BY_CATEGORY": "(według kategorii)",
-					"ALL": "(wszystkie)",
-					"CATEGORY": "Kategoria",
-					"DESCRIPTION": "Opis",
-					"DATE": "Data",
-					"DATE_FROM": "Data od",
-					"DATE_TO": "Data do",
-					"AMOUNT": "Kwota",
-					"AMOUNT_FROM": "Kwota od",
-					"AMOUNT_TO": "Kwota do",
-					"INCOME": "Przychód",
-					"OUTCOME": "Wydatek",
-					"ADD": "Dodaj nową transakcję",
-					"CHOOSE_DATERANGE": "Wybierz zakres dat",
-					"SEARCH": "Szukaj"
+				TRANSACTIONS: {
+					TRANSACTIONS: "Transakcje",
+					BY_CATEGORY: "(według kategorii)",
+					ALL: "(wszystkie)",
+					CATEGORY: "Kategoria",
+					DESCRIPTION: "Opis",
+					DATE: "Data",
+					DATE_FROM: "Data od",
+					DATE_TO: "Data do",
+					AMOUNT: "Kwota",
+					AMOUNT_FROM: "Kwota od",
+					AMOUNT_TO: "Kwota do",
+					INCOME: "Przychód",
+					OUTCOME: "Wydatek",
+					ADD: "Dodaj nową transakcję",
+					CHOOSE_DATERANGE: "Wybierz zakres dat",
+					CHOOSE_CATEGORY: "Wybierz kategorię",
+					SEARCH: "Szukaj",
+					NO_CATEGORIES_IN_PERIOD: "Brak kategorii w podanym okresie.",
+					NO_TRANSACTIONS: 'Brak transakcji.'
 				},
 
-				"COMMON": {
-					"ACTIONS": {
-						"ADD": "Dodaj",
-						"EDIT": "Edytuj",
-						"REMOVE": "Usuń",
-						"SEARCH": "Szukaj",
+				COMMON: {
+					ACTIONS: {
+						ADD: "Dodaj",
+						EDIT: "Edytuj",
+						REMOVE: "Usuń",
+						SEARCH: "Szukaj",
 					},
 				},
 

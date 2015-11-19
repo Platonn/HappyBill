@@ -5,8 +5,12 @@
 				<i class="fa fa-search fa-fw"></i> {{ 'TRANSACTIONS.SEARCH' | translate }}
 			</div>
             <div class="panel-body">
-                <div style="margin-bottom: 10px" class="input-group input-group-sm">
-                    <input
+                <div
+                	style="margin-bottom: 10px" 
+                	class="input-group input-group-sm"
+                	ng-class="{'has-warning': (transactionsCtrl.categorySummariesDisplayed.length == 0 && transactionsCtrl.filters.date)}"
+]                	>
+                	<input
                     	date-range-picker 
                     	type="text"
                     	class="form-control datepicker"
@@ -19,32 +23,41 @@
                 </div>
 
          		<hr/>
-
-				<table class="table table-responsive table-condensed table-stripped table-hover hb-table-selectable"
-						st-table="transactionsCtrl.categorySummariesDisplayed"
-		  				st-safe-src="transactionsCtrl.categorySummariesSafeSrc">
+				
+				<table
+					class="table table-responsive table-condensed table-stripped table-hover hb-table-selectable"
+					st-table="transactionsCtrl.categorySummariesDisplayed"
+		  			st-safe-src="transactionsCtrl.categorySummariesSafeSrc"
+		  			ng-show="transactionsCtrl.categorySummariesDisplayed.length > 0"
+		  			>
 					<thead>
 						<tr>
-							<th>{{ 'TRANSACTIONS.CATEGORY' | translate }}</th>
-							<th>{{ 'TRANSACTIONS.AMOUNT' | translate }}</th>
+							<th>{{ 'TRANSACTIONS.CHOOSE_CATEGORY' | translate }}</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr st-select-row="transaction"
 							st-select-mode="single"
 							ng-repeat="transaction in transactionsCtrl.categorySummariesDisplayed"
-							ng-click="transactionsCtrl.bindFilteredTransactions()">
-							<td>{{transaction.category}}</td>
-							<td>{{transaction.amount}} zł</td>
+							ng-click="transactionsCtrl.bindFilteredTransactions()"
+							ng-class="{success: transaction.isSelected}">
+							<td>{{transaction.category}} <span class="badge pull-right">{{transaction.amount}} zł</span>
 						</tr>
 					</tbody>
 				</table>
+
+				<div
+					class="alert alert-warning text-center"
+					ng-show="transactionsCtrl.categorySummariesDisplayed.length == 0 && transactionsCtrl.filters.date"
+		  			>
+		  			{{ 'TRANSACTIONS.NO_CATEGORIES_IN_PERIOD' | translate }}
+				</div>
 			</div>
 		</div>
 
 		<div class="panel panel-primary" >
             <div class="panel-heading">
-            	{{ 'TRANSACTIONS.ADD' | translate }}
+            	<i class="fa fa-plus fa-fw"></i> {{ 'TRANSACTIONS.ADD' | translate }}
             </div>
 
             <div style="padding-top:30px" class="panel-body">
@@ -101,11 +114,6 @@
 		                    		</button>	
 		                    	</div>
 		                    </div>
-							
-
-							<div style="margin-bottom: 10px; margin-top: 20px" class="input-group"> 
-								
-							</div>
 	                	</form>
 	                </div>
                 </div>  
@@ -113,7 +121,8 @@
         </div>  
 	</div>
 	
-	<div class="col-lg-8 col-xs-12">		
+	<div class="col-lg-8 col-xs-12"
+		 ng-show="transactionsCtrl.filteredTransactionsDisplayed.length > 0">		
 		<div class="panel panel-primary"
 		  st-table="transactionsCtrl.filteredTransactionsDisplayed"
 		  st-safe-src="transactionsCtrl.filteredTransactionsSafeSrc">
@@ -123,7 +132,10 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<table class="table table-responsive table-condensed table-stripped table-hover">
+				<table
+					class="table table-responsive table-condensed table-stripped table-hover"
+					ng-show="transactionsCtrl.filteredTransactionsDisplayed.length > 0"
+					>
 					<thead>
 						<tr>
 							<th><input st-search="category" placeholder="{{ 'TRANSACTIONS.CATEGORY' | translate }}" class="input-sm form-control" type="search"/></th>
@@ -162,7 +174,8 @@
 			</div>
 		</div>
 	</div>
-	
+	<div class="col-lg-offset-8"
+		 ng-show="transactionsCtrl.filteredTransactionsDisplayed.length == 0"></div>
 	<!-- spike
 	<div class="col-lg-4 col-xs-12">
 		<div class="panel with-nav-tabs panel-primary">
