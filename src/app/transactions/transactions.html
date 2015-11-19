@@ -16,42 +16,58 @@
                     	class="form-control datepicker"
                     	ng-model="transactionsCtrl.filters.date"
                     	placeholder="{{ 'TRANSACTIONS.CHOOSE_DATERANGE' | translate }}"
+                    	options="transactionsCtrl.dateRangePickerOpts"
                     	>
                     <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
                     <!-- TODO: set object with polish locale -->
                     <!-- TODO: set object with predefined ranges -->
                 </div>
 
-         		<hr/>
-				
-				<table
-					class="table table-responsive table-condensed table-stripped table-hover hb-table-selectable"
-					st-table="transactionsCtrl.categorySummariesDisplayed"
-		  			st-safe-src="transactionsCtrl.categorySummariesSafeSrc"
-		  			ng-show="transactionsCtrl.categorySummariesDisplayed.length > 0"
-		  			>
-					<thead>
-						<tr>
-							<th>{{ 'TRANSACTIONS.CHOOSE_CATEGORY' | translate }}</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr st-select-row="transaction"
-							st-select-mode="single"
-							ng-repeat="transaction in transactionsCtrl.categorySummariesDisplayed"
-							ng-click="transactionsCtrl.bindFilteredTransactions()"
-							ng-class="{success: transaction.isSelected}">
-							<td>{{transaction.category}} <span class="badge pull-right">{{transaction.amount}} zł</span>
-						</tr>
-					</tbody>
-				</table>
-
-				<div
-					class="alert alert-warning text-center"
-					ng-show="transactionsCtrl.categorySummariesDisplayed.length == 0 && transactionsCtrl.filters.date"
-		  			>
-		  			{{ 'TRANSACTIONS.NO_CATEGORIES_IN_PERIOD' | translate }}
+				<div ng-show="transactionsCtrl.categorySummariesDisplayed.length > 0"
+					 class="animated fadeIn">
+					<hr/>
+					<table
+						class="table table-responsive table-condensed table-stripped table-hover hb-table-selectable"
+						st-table="transactionsCtrl.categorySummariesDisplayed"
+			  			st-safe-src="transactionsCtrl.categorySummariesSafeSrc"
+			  			>
+						<thead>
+							<tr>
+								<th>{{ 'TRANSACTIONS.CHOOSE_CATEGORY' | translate }}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr st-select-row="transaction"
+								st-select-mode="single"
+								ng-repeat="transaction in transactionsCtrl.categorySummariesDisplayed"
+								ng-click="transactionsCtrl.bindFilteredTransactions()"
+								ng-class="{success: transaction.isSelected}">
+								<td>{{transaction.category}} <span class="badge pull-right">{{transaction.amount}} zł</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
+				<div ng-show="transactionsCtrl.categorySummariesDisplayed.length == 0 && transactionsCtrl.filters.date"
+					>
+					<hr/>
+					<div class="alert alert-warning text-center animated fadeIn">
+						{{ 'TRANSACTIONS.NO_CATEGORIES_IN_PERIOD' | translate }}
+					</div>
+				</div>
+
+
+<!-- spike
+<form name="datepickerForm" class="form-inline" role="form">
+  <div class="form-group" ng-class="{'has-error': datepickerForm.date.$invalid}">
+    <label class="control-label"><i class="fa fa-calendar"></i> Date <small>(as date)</small></label>
+    <input type="text" class="form-control" ng-model="selectedDate" name="date" min-view="1" bs-datepicker>
+  </div>
+</form>
+-->
+
+
+
 			</div>
 		</div>
 
@@ -81,7 +97,7 @@
 		                    </div>
 
 		                    <div style="margin-bottom: 10px" class="input-group input-group-sm">
-		                        <span class="input-group-addon"><i class="fa fa-dollar fa-fw"></i></span>
+		                        <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
 		                        <input id="hb-transaction-form-amount" type="number" pattern="^\d+(\.|\,)\d{2}$" class="form-control" name="amount" placeholder="{{ 'TRANSACTIONS.AMOUNT' | translate }}">
 		                    </div>
 
@@ -107,7 +123,7 @@
 		                    	<div class="col-md-6">
 		                    		<button
 		                    			type="button"
-		                    			class="btn btn-sm btn-primary"
+		                    			class="btn btn-sm btn-info"
 										style="width:100%"
 		                    			>
 		                    			{{ 'COMMON.ACTIONS.ADD' | translate }}
@@ -121,7 +137,7 @@
         </div>  
 	</div>
 	
-	<div class="col-lg-8 col-xs-12"
+	<div class="col-lg-8 col-xs-12 animated fadeIn"
 		 ng-show="transactionsCtrl.filteredTransactionsDisplayed.length > 0">		
 		<div class="panel panel-primary"
 		  st-table="transactionsCtrl.filteredTransactionsDisplayed"

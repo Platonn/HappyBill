@@ -15,6 +15,15 @@
         };
         $scope.filters = vm.filters; //for watch
         
+        vm.dateRangePickerOpts = {
+            locale: {
+               
+            },
+            eventHandlers: {
+                'apply.daterangepicker': function() { bindCategoriesSummariesAndFilteredTransactions() }
+            }
+        };
+
         vm.categorySummariesDisplayed   = [];
         vm.categorySummariesSafeSrc     = [];
         vm.filteredTransactionsDisplayed  = [];
@@ -36,13 +45,11 @@
             initTransactions();
         }
 
-        $scope.$watchCollection('filters', function(newValue, oldValue) {
-            if(newValue.date) {
-                var filteredTransactions = TransactionsService.filterByDateTransactions(vm.transactionsAll, vm.filters);
-                bindCategorySummaries(filteredTransactions);
-                bindFilteredTransactions();
-            }
-        });
+        function bindCategoriesSummariesAndFilteredTransactions() {
+            var filteredTransactions = TransactionsService.filterByDateTransactions(vm.transactionsAll, vm.filters);
+            bindCategorySummaries(filteredTransactions);
+            bindFilteredTransactions();
+        }
 
         function initTransactions(){
             TransactionsDataService.query().$promise
