@@ -3,13 +3,13 @@
 
     angular
         .module('happyBill')
-        .directive('myNavbar', myNavbar);
+        .directive('hbNavbar', hbNavbar);
 
     /** @ngInject */
-    function myNavbar() {
+    function hbNavbar() {
         var directive = {
             restrict: 'E',
-            templateUrl: 'app/myNavbar/myNavbar.html',
+            templateUrl: 'app/components/hbNavbar/hbNavbar.html',
             scope: {
                 navbarCollapsed: '='
             },

@@ -1,0 +1,18 @@
+/* tables.scss */
+
+tr > .hb-column-actions {
+  white-space: nowrap;
+}
+
+.hb-table-selectable {
+	tr {
+		cursor: pointer;
+
+		&.st-selected {
+			background-color: $brand-info;
+		}
+		&.st-selected:hover {
+			background-color: $brand-info;
+		}
+	}
+}

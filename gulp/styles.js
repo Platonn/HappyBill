@@ -17,6 +17,8 @@ gulp.task('styles', function () {
   };
 
   var injectFiles = gulp.src([
+    path.join('bower_components', '/bootswatch/flatly/_variables.scss'), // add bootstwatch/flatly/ theme scss variables
+    path.join('bower_components', '/bootswatch/flatly/_bootstrap.scss'), // add bootstwatch/flatly/ theme scss bootstrap
     path.join(conf.paths.src, '/app/**/*.scss'),
     path.join('!' + conf.paths.src, '/app/index.scss')
   ], { read: false });

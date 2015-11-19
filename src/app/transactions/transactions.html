@@ -1,15 +1,18 @@
 <div class="row" ng-controller="TransactionsController as transactionsCtrl">
 	<div class="col-lg-4 col-xs-12">
-		<div class="panel panel-primary" >
+		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<div class="panel-title">
-					<i class="fa fa-search fa-fw"></i> {{ 'TRANSACTIONS.SEARCH' | translate }}
-				</div>
+				<i class="fa fa-search fa-fw"></i> {{ 'TRANSACTIONS.SEARCH' | translate }}
 			</div>
             <div class="panel-body">
-                <div style="margin-bottom: 10px" class="input-group">
-                    <input date-range-picker type="text" class="form-control datepicker" ng-model="transactionsCtrl.search.value" placeholder="{{ 'TRANSACTIONS.CHOOSE_DATERANGE' | translate }}"
-                    options="transactionsCtrl.search.options">
+                <div style="margin-bottom: 10px" class="input-group input-group-sm">
+                    <input
+                    	date-range-picker 
+                    	type="text"
+                    	class="form-control datepicker"
+                    	ng-model="transactionsCtrl.filters.date"
+                    	placeholder="{{ 'TRANSACTIONS.CHOOSE_DATERANGE' | translate }}"
+                    	>
                     <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
                     <!-- TODO: set object with polish locale -->
                     <!-- TODO: set object with predefined ranges -->
@@ -17,9 +20,9 @@
 
          		<hr/>
 
-				<table class="table table-responsive table-condensed table-stripped table-hover"
-				st-table="transactionsCtrl.transactionsSummariesByCategoryDisplayed"
-		  		st-safe-src="transactionsCtrl.transactionsSummariesByCategory">
+				<table class="table table-responsive table-condensed table-stripped table-hover hb-table-selectable"
+						st-table="transactionsCtrl.categorySummariesDisplayed"
+		  				st-safe-src="transactionsCtrl.categorySummariesSafeSrc">
 					<thead>
 						<tr>
 							<th>{{ 'TRANSACTIONS.CATEGORY' | translate }}</th>
@@ -27,7 +30,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="transaction in transactionsCtrl.transactionsSummariesByCategoryDisplayed">
+						<tr st-select-row="transaction"
+							st-select-mode="single"
+							ng-repeat="transaction in transactionsCtrl.categorySummariesDisplayed"
+							ng-click="transactionsCtrl.bindFilteredTransactions()">
 							<td>{{transaction.category}}</td>
 							<td>{{transaction.amount}} zł</td>
 						</tr>
@@ -35,15 +41,85 @@
 				</table>
 			</div>
 		</div>
-	</div>
 
+		<div class="panel panel-primary" >
+            <div class="panel-heading">
+            	{{ 'TRANSACTIONS.ADD' | translate }}
+            </div>
+
+            <div style="padding-top:30px" class="panel-body">
+            	<div class="row">
+	                <div style="display:none" id="hb-transaction-add-alert" class="alert alert-danger col-xs-12"></div>
+	                <div class="col-xs-12">
+		                <form id="hb-transaction-add-form" class="form-horizontal" role="form">
+		                    <div style="margin-bottom: 10px" class="input-group input-group-sm">
+		                        <span class="input-group-addon"><i class="fa fa-tag fa-fw"></i></span>
+		                        <input id="hb-transaction-form-category" type="text" class="form-control" name="category" placeholder="{{ 'TRANSACTIONS.CATEGORY' | translate }}">
+		                    </div>
+
+		                    <div style="margin-bottom: 10px" class="input-group input-group-sm">
+		                        <span class="input-group-addon"><i class="fa fa-info fa-fw"></i></span>
+		                        <input id="hb-transaction-form-description" type="text" class="form-control" name="description" value="" placeholder="{{ 'TRANSACTIONS.DESCRIPTION' | translate }}">                                        
+		                    </div>
+		                        
+		                    <div style="margin-bottom: 10px" class="input-group input-group-sm">
+		                        <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
+		                        <input id="hb-transaction-form-date" type="text" class="form-control" name="date" placeholder="{{ 'TRANSACTIONS.DATE' | translate }}">
+		                    </div>
+
+		                    <div style="margin-bottom: 10px" class="input-group input-group-sm">
+		                        <span class="input-group-addon"><i class="fa fa-dollar fa-fw"></i></span>
+		                        <input id="hb-transaction-form-amount" type="number" pattern="^\d+(\.|\,)\d{2}$" class="form-control" name="amount" placeholder="{{ 'TRANSACTIONS.AMOUNT' | translate }}">
+		                    </div>
+
+		                    <div class="row">
+		                    	<div class="col-md-6">
+		                    		<div class="input-group">
+										<input
+						                    name="hb-transaction-form-type"
+										    bs-switch
+										    ng-model="isSelected"
+										    type="checkbox"
+										    switch-label="<span class='glyphicon glyphicon-transfer'></span>"
+										    switch-on-text="{{ 'TRANSACTIONS.INCOME' | translate }}"
+										    switch-off-text="{{ 'TRANSACTIONS.OUTCOME' | translate }}"
+										    switch-on-color="success"
+										    switch-off-color="danger"
+										    switch-radio-off="off"
+										    ng-true-value="'income'"
+										    ng-false-value="'outcome'"
+										    />
+									</div>
+		                    	</div>
+		                    	<div class="col-md-6">
+		                    		<button
+		                    			type="button"
+		                    			class="btn btn-sm btn-primary"
+										style="width:100%"
+		                    			>
+		                    			{{ 'COMMON.ACTIONS.ADD' | translate }}
+		                    		</button>	
+		                    	</div>
+		                    </div>
+							
+
+							<div style="margin-bottom: 10px; margin-top: 20px" class="input-group"> 
+								
+							</div>
+	                	</form>
+	                </div>
+                </div>  
+         	</div>                     
+        </div>  
+	</div>
+	
 	<div class="col-lg-8 col-xs-12">		
 		<div class="panel panel-primary"
-		  st-table="transactionsCtrl.transactionsDisplayed"
-		  st-safe-src="transactionsCtrl.transactions">
+		  st-table="transactionsCtrl.filteredTransactionsDisplayed"
+		  st-safe-src="transactionsCtrl.filteredTransactionsSafeSrc">
 			<div class="panel-heading">
 				<div class="panel-title">
-					{{ 'TRANSACTIONS.TRANSACTIONS' | translate }} {{ 'TRANSACTIONS.ALL' | translate }}
+					{{ 'TRANSACTIONS.TRANSACTIONS' | translate }} &nbsp;<span class="badge pull-right">{{transactionsCtrl.selectedCategoriesTransactionsDisplayed.length}}</span>
 				</div>
 			</div>
 			<div class="panel-body">
@@ -65,7 +141,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="transaction in transactionsCtrl.transactionsDisplayed">
+						<tr ng-repeat="transaction in transactionsCtrl.filteredTransactionsDisplayed">
 							<td>{{transaction.category}}</td>
 							<td>{{transaction.description}}</td>
 							<td>{{transaction.date}}</td>
@@ -87,7 +163,7 @@
 		</div>
 	</div>
 	
-	<!-- spike -->
+	<!-- spike
 	<div class="col-lg-4 col-xs-12">
 		<div class="panel with-nav-tabs panel-primary">
             <div class="panel-heading">
@@ -106,66 +182,7 @@
             </div>
         </div>
 	</div>
-
-	<!-- spike -->
-	<div class="col-lg-4 col-xs-12">
-		<div class="panel panel-primary" >
-            <div class="panel-heading">
-                <div class="panel-title">{{ 'TRANSACTIONS.ADD' | translate }}</div>
-
-            </div>
-
-            <div style="padding-top:30px" class="panel-body">
-            	<div class="row">
-	                <div style="display:none" id="hb-transaction-add-alert" class="alert alert-danger col-xs-12"></div>
-	                <div class="col-xs-12">
-		                <form id="hb-transaction-add-form" class="form-horizontal" role="form">
-		                    <div style="margin-bottom: 10px" class="input-group">
-		                        <span class="input-group-addon"><i class="fa fa-tag fa-fw"></i></span>
-		                        <input id="hb-transaction-form-category" type="text" class="form-control" name="category" placeholder="{{ 'TRANSACTIONS.CATEGORY' | translate }}">
-		                    </div>
-
-		                    <div style="margin-bottom: 10px" class="input-group">
-		                        <span class="input-group-addon"><i class="fa fa-info fa-fw"></i></span>
-		                        <input id="hb-transaction-form-description" type="text" class="form-control" name="description" value="" placeholder="{{ 'TRANSACTIONS.DESCRIPTION' | translate }}">                                        
-		                    </div>
-		                        
-		                    <div style="margin-bottom: 10px" class="input-group">
-		                        <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
-		                        <input id="hb-transaction-form-date" type="text" class="form-control" name="date" placeholder="{{ 'TRANSACTIONS.DATE' | translate }}">
-		                    </div>
-
-		                    <div style="margin-bottom: 10px" class="input-group">
-		                        <span class="input-group-addon"><i class="fa fa-dollar fa-fw"></i></span>
-		                        <input id="hb-transaction-form-amount" type="number" pattern="^\d+(\.|\,)\d{2}$" class="form-control" name="amount" placeholder="{{ 'TRANSACTIONS.AMOUNT' | translate }}">
-		                    </div>
-
-							<div style="margin-bottom: 10px" class="input-group">
-									<input
-					                    name="hb-transaction-form-type"
-									    bs-switch
-									    ng-model="isSelected"
-									    type="checkbox"
-									    switch-label="<span class='glyphicon glyphicon-transfer'></span>"
-									    switch-on-text="{{ 'TRANSACTIONS.INCOME' | translate }}"
-									    switch-off-text="{{ 'TRANSACTIONS.OUTCOME' | translate }}"
-									    switch-on-color="success"
-									    switch-off-color="danger"
-									    switch-radio-off="off"
-									    ng-true-value="'income'"
-									    ng-false-value="'outcome'"
-									    />
-							</div>
-
-							<div style="margin-bottom: 10px; margin-top: 20px" class="input-group"> 
-								<button type="button" class="btn btn-primary">{{ 'COMMON.ACTIONS.ADD' | translate }}</button>
-							</div>
-	                	</form>
-	                </div>
-                </div>  
-         	</div>                     
-        </div>  
-	</div>
+	 -->
 
 	<div ui-view></div>
 

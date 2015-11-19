@@ -7,67 +7,62 @@
 
 
     /* @ngInject */
-    function TransactionsController($resource, $log, currencyPrecision, _, safeCurrencyMath) {
+    function TransactionsController(TransactionsService, TransactionsDataService, $scope, $log, currencyPrecision, _, safeCurrencyMath) {
         var vm                      = this;
-        vm.title                    = 'TransactionsController';
-        vm.transactions             = [];
-        vm.transactionsDisplayed    = [];
-
-        vm.transactionsSummariesByCategory             = [];
-        vm.transactionsSummariesByCategoryDisplayed    = [];
-
-        /* //TODO
-        vm.add          = add;
-        vm.edit         = edit;
-        vm.remove       = remove;
-        */
+        vm.transactionsAll          = [];
+        vm.filters = {
+            date: null
+        };
+        $scope.filters = vm.filters; //for watch
         
+        vm.categorySummariesDisplayed   = [];
+        vm.categorySummariesSafeSrc     = [];
+        vm.filteredTransactionsDisplayed  = [];
+        vm.filteredTransactionsSafeSrc    = [];
+
+
+        vm.bindFilteredTransactions = bindFilteredTransactions;
+
         activate();
 
         ////////////////
+        
+        function bindFilteredTransactions(){
+            vm.filteredTransactionsSafeSrc    = TransactionsService.getFilteredTransactions(vm.categorySummariesSafeSrc, vm.filters);
+            vm.filteredTransactionsDisplayed  = angular.copy(vm.filteredTransactionsSafeSrc);
+        }
 
         function activate() {
-            var myResource = $resource('/transactions');
-            myResource.query()
-            .$promise.then(function(transactions) {
-
-                bindTransactions(transactions);
-                bindTransactionsSummariesByCategory(transactions);
-            });
+            initTransactions();
         }
 
-        /* //TODO
-        function add(){
-            $log.warn("add() to be implemented!");  // TODO
+        $scope.$watchCollection('filters', function(newValue, oldValue) {
+            bindFilteredTransactions();
+        });
+
+        function initTransactions(){
+            TransactionsDataService.query().$promise
+                .then(function(transactionsAll) {
+                    vm.transactionsAll = transactionsAll;
+                    bindCategorySummaries(vm.transactionsAll);
+                });
         }
 
-        function edit(transactionId){
-            $log.warn("edit() to be implemented!"); // TODO
+        function bindCategorySummaries(transactions) {
+            var transactionsByCategory  = _.groupBy(transactions, 'category');
+            vm.categorySummariesSafeSrc = getSummariesByCategory(transactionsByCategory);
+            vm.categorySummariesDisplayed = angular.copy(vm.categorySummariesSafeSrc);
         }
 
-        function remove(transactionId){
-            $log.warn("remove() to be implemented!"); // TODO
-        }
-        */
-    
-        //private
-
-        function bindTransactions(transactions) {
-            vm.transactions          = [].concat(transactions);
-            vm.transactionsDisplayed = [].concat(transactions);
-        }
-
-        function bindTransactionsSummariesByCategory(transactions) {
-            var transactionsByCategory = _.groupBy(transactions, 'category');
-            var transactionsSummariesByCategory = _.map(transactionsByCategory, function(transactions, category) {
+        function getSummariesByCategory(transactionsByCategory){
+            var summariesByCategory = _.map(transactionsByCategory, function(transactions, category) {
                 var result = {};
-                result.amount = safeCurrencyMath.sumCollection(_.pluck(transactions, 'amount'));
-                result.category = category;
+                result.category     = category;
+                result.amount       = safeCurrencyMath.sumCollection(_.pluck(transactions, 'amount'));
+                result.transactions = transactions; 
                 return result;
             });
-
-            vm.transactionsSummariesByCategory          = [].concat(transactionsSummariesByCategory);
-            vm.transactionsSummariesByCategoryDisplayed = [].concat(transactionsSummariesByCategory);
+            return summariesByCategory;
         }
     }
 })();
