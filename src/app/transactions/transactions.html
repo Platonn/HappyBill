@@ -110,13 +110,14 @@
 										    ng-model="isSelected"
 										    type="checkbox"
 										    switch-label="<span class='glyphicon glyphicon-transfer'></span>"
-										    switch-on-text="{{ 'TRANSACTIONS.INCOME' | translate }}"
-										    switch-off-text="{{ 'TRANSACTIONS.OUTCOME' | translate }}"
-										    switch-on-color="success"
-										    switch-off-color="danger"
+										    switch-on-text="{{ 'TRANSACTIONS.OUTCOME' | translate }}"
+										    switch-off-text="{{ 'TRANSACTIONS.INCOME' | translate }}"
+										    switch-on-color="danger"
+										    switch-off-color="success"
 										    switch-radio-off="off"
 										    ng-true-value="'income'"
 										    ng-false-value="'outcome'"
+										    switch-inverse="true"
 										    />
 									</div>
 		                    	</div>
