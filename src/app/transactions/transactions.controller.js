@@ -42,20 +42,34 @@
         }
 
         function activate() {
+            initDateFilter();
             initTransactions();
         }
 
-        function bindCategoriesSummariesAndFilteredTransactions() {
-            var filteredTransactions = TransactionsService.filterByDateTransactions(vm.transactionsAll, vm.filters);
-            bindCategorySummaries(filteredTransactions);
-            bindFilteredTransactions();
+        function initDateFilter(){
+            
+            //var startOfCurrentMonth = moment().startOf('month'); //spike - to powinno byc
+            var startOfCurrentMonth = moment('2000-01-01');
+            var endOfCurrentMonth = moment().endOf('month');
+
+            vm.filters.date = {
+                startDate: startOfCurrentMonth,
+                endDate: endOfCurrentMonth
+            };
         }
 
         function initTransactions(){
             TransactionsDataService.query().$promise
                 .then(function(transactionsAll) {
                     vm.transactionsAll = transactionsAll;
+                    bindCategoriesSummariesAndFilteredTransactions();
                 });
+        }
+
+        function bindCategoriesSummariesAndFilteredTransactions() {
+            var filteredTransactions = TransactionsService.filterByDateTransactions(vm.transactionsAll, vm.filters);
+            bindCategorySummaries(filteredTransactions);
+            bindFilteredTransactions();
         }
 
         function bindCategorySummaries(transactions) {
@@ -72,6 +86,9 @@
                 result.transactions = transactions; 
                 return result;
             });
+            summariesByCategory = _.sortBy(summariesByCategory, function(summaryByCategory){
+                return -summaryByCategory.amount; // sort by amount desc ( == minus asc)
+            })
             return summariesByCategory;
         }
     }
