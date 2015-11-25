@@ -1,0 +1,19 @@
+.hb-inBackground {
+	position:absolute;
+	z-index: -1;
+} 
+
+.hb-inMediumground {
+	position:absolute;
+	z-index: 0;
+}
+
+.hb-inForeground {
+	position:absolute;
+	z-index: 1;
+}
+
+.hb-category-progressbar {
+	width: 100%;
+	height:20px;
+}

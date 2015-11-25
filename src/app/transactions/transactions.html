@@ -42,7 +42,15 @@
 								ng-repeat="transaction in transactionsCtrl.categorySummariesDisplayed"
 								ng-click="transactionsCtrl.bindFilteredTransactions()"
 								ng-class="{success: transaction.isSelected}">
-								<td>{{transaction.category}} <span class="badge pull-right">{{transaction.amount}} zł</span>
+								<td>
+									<div class="progress hb-category-progressbar hb-inMediumground" style="width:50%">
+										<div
+											class="progress-bar progress-bar-info"
+											role="progressbar"
+											style="width:60%;"></div>
+									</div>
+									<span class="hb-inForeground">{{transaction.category}}</span>
+									<span class="badge pull-right">{{transaction.amount}} zł</span>
 								</td>
 							</tr>
 						</tbody>
