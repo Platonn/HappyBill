@@ -71,71 +71,7 @@
 			</div>
 		</div>
 
-		<div class="panel panel-primary" >
-            <div class="panel-heading">
-            	<i class="fa fa-plus fa-fw"></i> {{ 'TRANSACTIONS.ADD' | translate }}
-            </div>
-
-            <div style="padding-top:30px" class="panel-body">
-            	<div class="row">
-	                <div style="display:none" id="hb-transaction-add-alert" class="alert alert-danger col-xs-12"></div>
-	                <div class="col-xs-12">
-		                <form id="hb-transaction-add-form" class="form-horizontal" role="form">
-		                    <div style="margin-bottom: 10px" class="input-group input-group-sm">
-		                        <span class="input-group-addon"><i class="fa fa-tag fa-fw"></i></span>
-		                        <input id="hb-transaction-form-category" type="text" class="form-control" name="category" placeholder="{{ 'TRANSACTIONS.CATEGORY' | translate }}">
-		                    </div>
-
-		                    <div style="margin-bottom: 10px" class="input-group input-group-sm">
-		                        <span class="input-group-addon"><i class="fa fa-info fa-fw"></i></span>
-		                        <input id="hb-transaction-form-description" type="text" class="form-control" name="description" value="" placeholder="{{ 'TRANSACTIONS.DESCRIPTION' | translate }}">                                        
-		                    </div>
-		                        
-		                    <div style="margin-bottom: 10px" class="input-group input-group-sm">
-		                        <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
-		                        <input id="hb-transaction-form-date" type="text" class="form-control" name="date" placeholder="{{ 'TRANSACTIONS.DATE' | translate }}">
-		                    </div>
-
-		                    <div style="margin-bottom: 10px" class="input-group input-group-sm">
-		                        <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
-		                        <input id="hb-transaction-form-amount" type="number" pattern="^\d+(\.|\,)\d{2}$" class="form-control" name="amount" placeholder="{{ 'TRANSACTIONS.AMOUNT' | translate }}">
-		                    </div>
-
-		                    <div class="row">
-		                    	<div class="col-md-6">
-		                    		<div class="input-group">
-										<input
-						                    name="hb-transaction-form-type"
-										    bs-switch
-										    ng-model="isSelected"
-										    type="checkbox"
-										    switch-label="<span class='glyphicon glyphicon-transfer'></span>"
-										    switch-on-text="{{ 'TRANSACTIONS.OUTCOME' | translate }}"
-										    switch-off-text="{{ 'TRANSACTIONS.INCOME' | translate }}"
-										    switch-on-color="danger"
-										    switch-off-color="success"
-										    switch-radio-off="off"
-										    ng-true-value="'income'"
-										    ng-false-value="'outcome'"
-										    switch-inverse="true"
-										    />
-									</div>
-		                    	</div>
-		                    	<div class="col-md-6">
-		                    		<button
-		                    			type="button"
-		                    			class="btn btn-sm btn-info"
-										style="width:100%"
-		                    			>
-		                    			{{ 'COMMON.ACTIONS.ADD' | translate }}
-		                    		</button>	
-		                    	</div>
-		                    </div>
-	                	</form>
-	                </div>
-                </div>  
-         	</div>                     
-        </div>
+		<div ng-include src="'app/transactions/transactions-add/transactions-add.html'"></div>
 	</div>
 
 	<div class="col-lg-8 col-xs-12 animated fadeIn"

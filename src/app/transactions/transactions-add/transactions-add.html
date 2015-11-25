@@ -1,0 +1,123 @@
+<div class="panel panel-primary" ng-controller="TransactionsAddController as addCtrl">
+    <div class="panel-heading">
+    	<i class="fa fa-plus fa-fw"></i> {{ 'TRANSACTIONS.ADD' | translate }}
+    </div>
+
+    <div style="padding-top:30px" class="panel-body">
+    	<div class="row">
+            <div style="display:none" id="hb-transaction-add-alert" class="alert alert-danger col-xs-12"></div>
+            <div class="col-xs-12">
+                <form
+                	class="form-horizontal"
+                	role="form"
+                	name="transactionForm"
+                	ng-submit="addCtrl.add()"
+                	novalidate>
+                    <div
+                    	style="margin-bottom: 10px"
+                    	class="input-group input-group-sm"
+                    	ng-class="{
+                    		'has-error': addCtrl.hasError(transactionForm.category),
+                    		'has-success': addCtrl.hasSuccess(transactionForm.category)
+                    	}">
+                        <span class="input-group-addon"><i class="fa fa-tag fa-fw"></i></span>
+                        <input
+                        	type="text"
+                        	class="form-control"
+                        	name="category"
+                        	placeholder="{{ 'TRANSACTIONS.CATEGORY' | translate }}"
+							ng-model="addCtrl.transaction.category"
+							required
+                        	>
+                    </div>
+
+                    <div
+                    	style="margin-bottom: 10px"
+                    	class="input-group input-group-sm"
+                    	ng-class="{
+                    		'has-error': addCtrl.hasError(transactionForm.description),
+                    		'has-success': addCtrl.hasSuccess(transactionForm.description)
+                    	}">
+                        <span class="input-group-addon"><i class="fa fa-info fa-fw"></i></span>
+                        <input
+                        	type="text"
+                        	class="form-control"
+                        	name="description"
+                        	placeholder="{{ 'TRANSACTIONS.DESCRIPTION' | translate }}"
+							ng-model="addCtrl.transaction.description"
+							required
+                        	>                                        
+                    </div>
+                        
+                    <div
+                    	style="margin-bottom: 10px"
+                    	class="input-group input-group-sm"
+						ng-class="{
+                    		'has-error': addCtrl.hasError(transactionForm.date),
+                    		'has-success': addCtrl.hasSuccess(transactionForm.date)
+                    	}">
+                        <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
+                        <input
+                        	type="text"
+                        	class="form-control"
+                        	name="date"
+                        	placeholder="{{ 'TRANSACTIONS.DATE' | translate }}"
+							ng-model="addCtrl.transaction.date"
+							required
+                        	>
+                    </div>
+
+                    <div
+                    	style="margin-bottom: 10px"
+                    	class="input-group input-group-sm"
+                    	ng-class="{
+                    		'has-error': addCtrl.hasError(transactionForm.amount),
+                    		'has-success': addCtrl.hasSuccess(transactionForm.amount)
+                    	}">
+                        <span class="input-group-addon"><i class="fa fa-money fa-fw"></i></span>
+                        <input
+                        	type="text"
+                        	class="form-control"
+                        	name="amount"
+                        	placeholder="{{ 'TRANSACTIONS.AMOUNT' | translate }} ({{ 'CURRENCY.ZLOTY' | translate }})"
+                        	ng-model="addCtrl.transaction.amount"
+							pattern="^\d+((\.|\,)\d{2})?$"
+							required
+							>
+                    </div>
+
+                    <div class="row">
+                    	<div class="col-md-6">
+                    		<div class="input-group">
+								<input
+				                    name="hb-transaction-form-type"
+								    bs-switch
+								    ng-model="addCtrl.transaction.type"
+								    type="checkbox"
+								    switch-label="<span class='glyphicon glyphicon-transfer'></span>"
+								    switch-on-text="{{ 'TRANSACTIONS.OUTCOME' | translate }}"
+								    switch-off-text="{{ 'TRANSACTIONS.INCOME' | translate }}"
+								    switch-on-color="danger"
+								    switch-off-color="success"
+								    switch-radio-off="off"
+								    ng-true-value="'outcome'"
+								    ng-false-value="'income'"
+								    switch-inverse="true"
+								    />
+							</div>
+                    	</div>
+                    	<div class="col-md-6">
+                    		<button
+                    			type="submit"
+                    			class="btn btn-sm btn-info"
+								style="width:100%"
+                    			>
+                    			{{ 'COMMON.ACTIONS.ADD' | translate }}
+                    		</button>	
+                    	</div>
+                    </div>
+            	</form>
+            </div>
+        </div>  
+ 	</div>                     
+</div>

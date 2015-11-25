@@ -52,9 +52,14 @@
 					CHOOSE_CATEGORY: "Wybierz kategorię",
 					SEARCH: "Szukaj",
 					NO_CATEGORIES_IN_PERIOD: "Brak kategorii w podanym okresie.",
-					NO_TRANSACTIONS: 'Brak transakcji.'
+					NO_TRANSACTIONS: 'Brak transakcji.',
+					FEEDBACK: {
+						ADD : {
+							SUCCCESS: 'Dodano transakcję!',
+							ERROR: 'Nie można dodać transakcji!'
+						}
+					}
 				},
-
 				COMMON: {
 					ACTIONS: {
 						ADD: "Dodaj",
@@ -63,6 +68,9 @@
 						SEARCH: "Szukaj",
 					},
 				},
+				CURRENCY: {
+					ZLOTY: 'zł'
+				}
 
 			}
         );

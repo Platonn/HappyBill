@@ -6,11 +6,30 @@
         .service('TransactionsService', TransactionsService);
 
     /* @ngInject */
-    function TransactionsService() {
+    function TransactionsService(TransactionsDataService, $q) {
+        this.getAllTransactions = getAllTransactions;
         this.getFilteredTransactions = getFilteredTransactions;
         this.filterByDateTransactions = filterByDateTransactions;
 
+        var allTransactions = null;
+
         ////////////////
+
+        function getAllTransactions(){
+            var deferred = $q.defer();
+            
+            if(allTransactions){
+                deferred.resolve(allTransactions);
+            } else {
+                TransactionsDataService.query().$promise
+                .then(function(transactions) {
+                    allTransactions = transactions;
+                    deferred.resolve(allTransactions);
+                });
+            }
+
+            return deferred.promise;
+        }
 
         function getFilteredTransactions(categorySummaries, filters){
             var tempResult = filterSelectedCategoriesTransactions(categorySummaries);

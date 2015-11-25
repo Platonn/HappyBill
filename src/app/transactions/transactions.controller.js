@@ -59,9 +59,9 @@
         }
 
         function initTransactions(){
-            TransactionsDataService.query().$promise
-                .then(function(transactionsAll) {
-                    vm.transactionsAll = transactionsAll;
+            TransactionsService.getAllTransactions()
+                .then(function(transactions) {
+                    vm.transactionsAll = transactions;
                     bindCategoriesSummariesAndFilteredTransactions();
                 });
         }
