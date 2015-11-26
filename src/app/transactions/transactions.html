@@ -1,4 +1,4 @@
-<div class="row" ng-controller="TransactionsController as transactionsCtrl">
+<div class="row">
 	<div class="col-lg-4 col-xs-12">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
@@ -8,28 +8,28 @@
                 <div
                 	style="margin-bottom: 10px" 
                 	class="input-group input-group-sm"
-                	ng-class="{'has-warning': (transactionsCtrl.categorySummariesDisplayed.length == 0 && transactionsCtrl.filters.date)}"
+                	ng-class="{'has-warning': (transCtrl.categorySummariesDisplayed.length == 0 && transCtrl.filters.date)}"
 ]                	>
                 	<input
                     	date-range-picker 
                     	type="text"
                     	class="form-control datepicker"
-                    	ng-model="transactionsCtrl.filters.date"
+                    	ng-model="transCtrl.filters.date"
                     	placeholder="{{ 'TRANSACTIONS.CHOOSE_DATERANGE' | translate }}"
-                    	options="transactionsCtrl.dateRangePickerOpts"
+                    	options="transCtrl.dateRangePickerOpts"
                     	>
                     <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
                     <!-- TODO: set object with polish locale -->
                     <!-- TODO: set object with predefined ranges -->
                 </div>
 
-				<div ng-show="transactionsCtrl.categorySummariesDisplayed.length > 0"
+				<div ng-show="transCtrl.categorySummariesDisplayed.length > 0"
 					 class="animated fadeIn">
 					<hr/>
 					<table
 						class="table table-responsive table-condensed table-stripped table-hover hb-table-selectable"
-						st-table="transactionsCtrl.categorySummariesDisplayed"
-			  			st-safe-src="transactionsCtrl.categorySummariesSafeSrc"
+						st-table="transCtrl.categorySummariesDisplayed"
+			  			st-safe-src="transCtrl.categorySummariesSafeSrc"
 			  			>
 						<thead>
 							<tr>
@@ -37,26 +37,35 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr st-select-row="transaction"
+							<tr st-select-row="categorySummary"
 								st-select-mode="single"
-								ng-repeat="transaction in transactionsCtrl.categorySummariesDisplayed"
-								ng-click="transactionsCtrl.bindFilteredTransactions()"
-								ng-class="{success: transaction.isSelected}">
+								ng-repeat="categorySummary in transCtrl.categorySummariesDisplayed"
+								ng-click="transCtrl.bindFilteredTransactions()"
+								ng-class="{success: categorySummary.isSelected}">
 								<td>
-									<div class="progress hb-category-progressbar hb-inMediumground" style="width:50%">
-										<div
-											class="progress-bar progress-bar-info"
-											role="progressbar"
-											style="width:60%;"></div>
+									<div class="hb-inMediumground">
+										<div class="progress hb-progressbarCategory " style="width:40%;">
+											<div
+												class="progress-bar progress-bar-info"
+												role="progressbar"
+												style="width: {{ categorySummary.amountPercentage }}%"></div>
+										</div>
+										<div class="progress hb-progressbarCategory " style="width:40%; margin-top:2px;">
+											<div
+												class="progress-bar progress-bar-danger"
+												role="progressbar"
+												style="width: {{ categorySummary.amountPercentage }}%"></div>
+										</div>
 									</div>
-									<span class="hb-inForeground">{{transaction.category}}</span>
-									<span class="badge pull-right">{{transaction.amount}} zł</span>
+									<span class="hb-inForeground">{{categorySummary.category}}</span>
+									<span class="pull-right">
+										<span class="badge">{{categorySummary.amount}} zł</span> / <span class="badge" style="background-color: red">-50 zł</span>
 								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				<div ng-show="transactionsCtrl.categorySummariesDisplayed.length == 0 && transactionsCtrl.filters.date"
+				<div ng-show="transCtrl.categorySummariesDisplayed.length == 0 && transCtrl.filters.date"
 					>
 					<hr/>
 					<div class="alert alert-warning text-center animated fadeIn">
@@ -83,19 +92,19 @@
 	</div>
 
 	<div class="col-lg-8 col-xs-12 animated fadeIn"
-		 ng-show="transactionsCtrl.filteredTransactionsDisplayed.length > 0">		
+		 ng-show="transCtrl.filteredTransactionsDisplayed.length > 0">		
 		<div class="panel panel-primary"
-		  st-table="transactionsCtrl.filteredTransactionsDisplayed"
-		  st-safe-src="transactionsCtrl.filteredTransactionsSafeSrc">
+		  st-table="transCtrl.filteredTransactionsDisplayed"
+		  st-safe-src="transCtrl.filteredTransactionsSafeSrc">
 			<div class="panel-heading">
 				<div class="panel-title">
-					{{ 'TRANSACTIONS.TRANSACTIONS' | translate }} &nbsp;<span class="badge pull-right">{{transactionsCtrl.selectedCategoriesTransactionsDisplayed.length}}</span>
+					{{ 'TRANSACTIONS.TRANSACTIONS' | translate }} &nbsp;<span class="badge pull-right">{{transCtrl.selectedCategoriesTransactionsDisplayed.length}}</span>
 				</div>
 			</div>
 			<div class="panel-body">
 				<table
 					class="table table-responsive table-condensed table-stripped table-hover"
-					ng-show="transactionsCtrl.filteredTransactionsDisplayed.length > 0"
+					ng-show="transCtrl.filteredTransactionsDisplayed.length > 0"
 					>
 					<thead>
 						<tr>
@@ -107,18 +116,18 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="transaction in transactionsCtrl.filteredTransactionsDisplayed">
+						<tr ng-repeat="transaction in transCtrl.filteredTransactionsDisplayed">
 							<td>{{transaction.category}}</td>
 							<td>{{transaction.description}}</td>
 							<td>{{transaction.date}}</td>
 							<td>{{transaction.amount}} zł</td>
 							<td class="hb-column-actions">
 								<a class="btn btn-primary btn-circle btn-xs"
-								   ng-click="transactionsCtrl.edit(transaction.id)">
+								   ng-click="transCtrl.edit(transaction.id)">
 									<i class="fa fa-edit fa-fw"></i>
 								</a> 
 								<a class="btn btn-danger btn-circle btn-xs"
-								   ng-click="transactionsCtrl.remove(transaction.id)">
+								   ng-click="transCtrl.remove(transaction.id)">
 								   <i class="fa fa-remove fa-fw"></i>
 								</a>
 							</td>
@@ -129,7 +138,7 @@
 		</div>
 	</div>
 	<div class="col-lg-offset-8"
-		 ng-show="transactionsCtrl.filteredTransactionsDisplayed.length == 0"></div>
+		 ng-show="transCtrl.filteredTransactionsDisplayed.length == 0"></div>
 	<!-- spike
 	<div class="col-lg-4 col-xs-12">
 		<div class="panel with-nav-tabs panel-primary">

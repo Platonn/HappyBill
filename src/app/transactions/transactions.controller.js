@@ -32,6 +32,9 @@
 
         vm.bindFilteredTransactions = bindFilteredTransactions;
 
+        //spike:
+        vm.alert = function(){alert()};
+
         activate();
 
         ////////////////
@@ -79,6 +82,7 @@
         }
 
         function getSummariesByCategory(transactionsByCategory){
+            // sum transactions by category:
             var summariesByCategory = _.map(transactionsByCategory, function(transactions, category) {
                 var result = {};
                 result.category     = category;
@@ -86,6 +90,15 @@
                 result.transactions = transactions; 
                 return result;
             });
+
+            // set amount percentages:
+            //var totalAmount = safeCurrencyMath.sumCollection(_.pluck(summariesByCategory, 'amount'));
+            var maxAmount = _.max(summariesByCategory, function(summary){ return summary.amount}).amount;
+            _.each(summariesByCategory,function(categorySummary){
+                categorySummary.amountPercentage = safeCurrencyMath.getPercentage(categorySummary.amount, maxAmount);
+            });
+
+            // sort:
             summariesByCategory = _.sortBy(summariesByCategory, function(summaryByCategory){
                 return -summaryByCategory.amount; // sort by amount desc ( == minus asc)
             })

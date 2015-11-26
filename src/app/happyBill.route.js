@@ -16,7 +16,9 @@
       })
       .state('transactions', {
         url: '/transactions',
-        templateUrl: 'app/transactions/transactions.html'
+        templateUrl: 'app/transactions/transactions.html',
+        controller: 'TransactionsController',
+        controllerAs: 'transCtrl'
       })
         .state('transactions.create', {
           url: '/transactions/create',
