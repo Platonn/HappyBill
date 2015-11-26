@@ -26,9 +26,9 @@
 	function translationsPL($translateProvider) {
 		$translateProvider.translations('PL', 
         	{
-				"APPNAME": "HappyBill",
+				APPNAME: "HappyBill",
 
-				"ROUTES": {
+				ROUTES: {
 					"TRANSACTIONS": "Transakcje",
 					"CATEGORIES": "Kategorie",
 				},
@@ -59,6 +59,9 @@
 							ERROR: 'Nie można dodać transakcji!'
 						}
 					}
+				},
+				CATEGORIES: {
+					CATEGORIES: 'Kategorie'
 				},
 				COMMON: {
 					ACTIONS: {

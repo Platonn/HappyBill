@@ -13,7 +13,6 @@
         vm.filters = {
             date: null
         };
-        $scope.filters = vm.filters; //for watch
         
         vm.dateRangePickerOpts = {
             locale: {
@@ -31,9 +30,6 @@
 
 
         vm.bindFilteredTransactions = bindFilteredTransactions;
-
-        //spike:
-        vm.alert = function(){alert()};
 
         activate();
 

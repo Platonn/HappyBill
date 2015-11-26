@@ -23,7 +23,8 @@
     "underscore": "~1.8.3",
     "angular-underscore-module": "~1.0.1",
     "bootswatch": "~3.3.5",
-    "angular-daterangepicker": "~0.2.0"
+    "angular-daterangepicker": "~0.2.0",
+    "angular-bootstrap-nav-tree": ""
   },
   "overrides" : {
     "bootswatch": {

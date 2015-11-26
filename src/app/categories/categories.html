@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<i class="fa fa-tag fa-fw"></i> {{ 'CATEGORIES.CATEGORIES' | translate }}
+			</div>
+            <div class="panel-body">
+				<abn-tree 
+				    tree-data         = "my_data"
+				    icon-leaf         = "fa fa-tag fa-fw"
+				    icon-expand       = "fa fa-plus fa-fw"
+				    icon-collapse     = "fa fa-minus fa-fw"
+				    on-select         = "my_tree_handler(branch)"
+				    expand-level      = "100">      
+				></abn-tree>
+            </div>
+        </div>
+    </div>
+
+    <div
+    class="col-md-offset-6"
+    	ng-show="catCtrl.selectedMainCategory"></div>
+    <div
+    	class="col-md-offset-6"
+    	ng-show="catCtrl.selectedMainCategory"></div>
+</div>

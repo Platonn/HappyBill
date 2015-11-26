@@ -20,10 +20,13 @@
         controller: 'TransactionsController',
         controllerAs: 'transCtrl'
       })
-        .state('transactions.create', {
-          url: '/transactions/create',
-          templateUrl: 'app/transactions/transactions-form.html'
-        });
+      .state('categories', {
+        url: '/categories',
+        templateUrl: 'app/categories/categories.html',
+        controller: 'CategoriesController',
+        controllerAs: 'catCtrl'
+      })
+      ;
 
     $urlRouterProvider.otherwise('/');
   }

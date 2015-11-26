@@ -14,6 +14,7 @@
             'smart-table',
             'underscore',
             'daterangepicker',
+            'angularBootstrapNavTree',
 
             //my modules
             'happyBill.translate',
