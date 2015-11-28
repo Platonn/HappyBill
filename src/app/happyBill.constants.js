@@ -1,4 +1,4 @@
-/* global malarkey:false, toastr:false, moment:false */
+/* global malarkey:false, toastr:false, moment:false, _:false */
 (function() {
   'use strict';
 
@@ -6,6 +6,7 @@
     .module('happyBill')
     .constant('malarkey', malarkey)
     .constant('toastr', toastr)
-    .constant('moment', moment);
+    .constant('moment', moment)
+    .constant('_', _);
 
 })();

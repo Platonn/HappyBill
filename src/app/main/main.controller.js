@@ -7,6 +7,7 @@
 
     /* @ngInject */
     function MainController() {
+        /* jshint unused: false */
         var vm = this;
         activate();
 

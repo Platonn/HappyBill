@@ -6,7 +6,7 @@
         .service('TransactionsService', TransactionsService);
 
     /* @ngInject */
-    function TransactionsService(TransactionsDataService, $q) {
+    function TransactionsService(TransactionsDataService, _, moment, $q) {
         this.getAllTransactions = getAllTransactions;
         this.getFilteredTransactions = getFilteredTransactions;
         this.filterByDateTransactions = filterByDateTransactions;

@@ -7,7 +7,7 @@
 
 
     /* @ngInject */
-    function TransactionsController(TransactionsService, TransactionsDataService, $scope, $log, currencyPrecision, _, safeCurrencyMath) {
+    function TransactionsController(TransactionsService, TransactionsDataService, $scope, $log, currencyPrecision, _, safeCurrencyMath, moment) {
         var vm                      = this;
         vm.transactionsAll          = [];
         vm.filters = {
@@ -19,7 +19,7 @@
                
             },
             eventHandlers: {
-                'apply.daterangepicker': function() { bindCategoriesSummariesAndFilteredTransactions() }
+                'apply.daterangepicker': function() { bindCategoriesSummariesAndFilteredTransactions(); }
             }
         };
 
@@ -89,7 +89,7 @@
 
             // set amount percentages:
             //var totalAmount = safeCurrencyMath.sumCollection(_.pluck(summariesByCategory, 'amount'));
-            var maxAmount = _.max(summariesByCategory, function(summary){ return summary.amount}).amount;
+            var maxAmount = _.max(summariesByCategory, function(summary){ return summary.amount;}).amount;
             _.each(summariesByCategory,function(categorySummary){
                 categorySummary.amountPercentage = safeCurrencyMath.getPercentage(categorySummary.amount, maxAmount);
             });
@@ -97,7 +97,7 @@
             // sort:
             summariesByCategory = _.sortBy(summariesByCategory, function(summaryByCategory){
                 return -summaryByCategory.amount; // sort by amount desc ( == minus asc)
-            })
+            });
             return summariesByCategory;
         }
     }

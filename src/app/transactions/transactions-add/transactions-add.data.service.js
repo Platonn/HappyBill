@@ -6,7 +6,7 @@
         .service('TransactionsAddDataService', TransactionsAddDataService);
 
     /* @ngInject */
-    function TransactionsAddDataService($log, $q, $timeout) {
+    function TransactionsAddDataService($q, $timeout) {
         this.add = add;
 
         ////////////////
@@ -16,7 +16,7 @@
 
         	//spike:
         	$timeout(function() {
-        		deferred.resolve();	
+        		deferred.resolve(transaction);
         	},
         	300);
         	

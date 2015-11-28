@@ -23,7 +23,7 @@
         }
 
         function getPercentage(amount, total){
-            return window.Math.round(100*amount/total);
+            return Math.round(100*amount/total);
         }
     }
 })();

@@ -6,7 +6,7 @@
         .controller('TransactionsAddController', TransactionsAddController);
 
     /* @ngInject */
-    function TransactionsAddController(TransactionsAddDataService, $scope, $log) {
+    function TransactionsAddController(TransactionsAddDataService, toastr, $scope) {
         var vm = this;
         vm.add = add;
         vm.hasError = hasError;
@@ -32,7 +32,7 @@
 					lastDate = vm.transaction.date;
 					resetFields();
 					$scope.transactionForm.$setUntouched();
-				})
+				});
 			} else {
 				toastr.error('Spike: Nie dodano transakcji');
 			}
