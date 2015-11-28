@@ -6,12 +6,13 @@
 			</div>
             <div class="panel-body">
 				<abn-tree 
-				    tree-data         = "my_data"
+				    tree-data         = "catCtrl.categories"
+				    tree-control      = "catCtrl.categoriesTreeControl"
 				    icon-leaf         = "fa fa-tag fa-fw"
 				    icon-expand       = "fa fa-plus fa-fw"
 				    icon-collapse     = "fa fa-minus fa-fw"
-				    on-select         = "my_tree_handler(branch)"
-				    expand-level      = "100">      
+				    on-select         = "catCtrl.categoryClickCallback(branch)"
+				    expand-level      = "2">      
 				></abn-tree>
             </div>
         </div>

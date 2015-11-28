@@ -41,12 +41,12 @@
 								st-select-mode="single"
 								ng-repeat="categorySummary in transCtrl.categorySummariesDisplayed"
 								ng-click="transCtrl.bindFilteredTransactions()"
-								ng-class="{success: categorySummary.isSelected}">
+								ng-class="{info: categorySummary.isSelected}">
 								<td>
-									<div class="hb-inMediumground">
+									<div class="">
 										<div class="progress hb-progressbarCategory " style="width:40%;">
 											<div
-												class="progress-bar progress-bar-info"
+												class="progress-bar progress-bar-primary"
 												role="progressbar"
 												style="width: {{ categorySummary.amountPercentage }}%"></div>
 										</div>
@@ -57,9 +57,9 @@
 												style="width: {{ categorySummary.amountPercentage }}%"></div>
 										</div>
 									</div>
-									<span class="hb-inForeground">{{categorySummary.category}}</span>
+									<span class="">{{categorySummary.category}}</span>
 									<span class="pull-right">
-										<span class="badge">{{categorySummary.amount}} zł</span> / <span class="badge" style="background-color: red">-50 zł</span>
+										<span class="badge hb-badge">{{categorySummary.amount}} zł</span> / <span class="badge hb-badge-danger">-50 zł</span>
 								</td>
 							</tr>
 						</tbody>

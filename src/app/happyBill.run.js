@@ -38,6 +38,13 @@
 
 
   // functions with mocked backend
+  function getMockCategories(){
+    var result = [
+      
+    ];
+    return result;
+  }
+
   function getMockTransactions() {
     var result = [
       {
